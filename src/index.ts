@@ -6,6 +6,7 @@ import cqlfhir from "cql-exec-fhir";
 import cqlvsac from "cql-exec-vsac";
 import fs from "fs";
 import path from "path";
+import bodyParser from "body-parser";
 /*
  * Load up and parse configuration details from
  * the `.env` file to the `process.env`
@@ -21,20 +22,23 @@ dotenv.config();
 const app: Express = express();
 const port = process.env.PORT || 3000;
 
+// create application/json parser
+var jsonParser = bodyParser.json()
+
 /* Define a route for the root path ("/")
  using the HTTP GET method */
 app.get("/", (req: Request, res: Response) => {
   res.send("Express + TypeScript Server");
 });
 
-app.post("/exec", (req: Request, res: Response) => {
+app.post("/exec", jsonParser, (req: Request, res: Response) => {
     const umlsKey = process.env.UMLS_API_KEY || "";
     const fhirBundles = req.body.fhirBundles;
     const cqlJson = req.body.cqlJson;
     const fhirBaseUrl = req.body.fhirBaseUrl || "";
-    const elmFile = JSON.parse(cqlJson);
+    const elmFile = cqlJson;
     const libraries = {
-      FHIRHelpers: JSON.parse(fs.readFileSync("FHIRHelpers.json", "utf8")),
+      FHIRHelpers: JSON.parse(fs.readFileSync("src/FHIRHelpers.json", "utf8")),
     };
     const library = new cql.Library(elmFile, new cql.Repository(libraries));
 
