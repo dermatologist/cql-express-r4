@@ -27,7 +27,9 @@ app.get("/", (req: Request, res: Response) => {
 
 app.post("/exec", (req: Request, res: Response) => {
     const umlsKey = process.env.UMLS_API_KEY || "";
-
+    const fhirBundle = req.body.fhirBundle;
+    const cqlJson = req.body.cqlJson;
+    const elmFile = JSON.parse(cqlJson);
 
 });
 
