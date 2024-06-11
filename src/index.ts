@@ -28,10 +28,10 @@ var jsonParser = bodyParser.json()
 /* Define a route for the root path ("/")
  using the HTTP GET method */
 app.get("/", (req: Request, res: Response) => {
-  res.send("Express + TypeScript Server");
+  res.send("CQL Execution Service is running! Post to this URL with fhirBundles, cqlJson and fhirBaseUrl (for terminology) as params.");
 });
 
-app.post("/exec", jsonParser, (req: Request, res: Response) => {
+app.post("/", jsonParser, (req: Request, res: Response) => {
     const umlsKey = process.env.UMLS_API_KEY || "";
     const fhirBundles = req.body.fhirBundles;
     const cqlJson = req.body.cqlJson;
