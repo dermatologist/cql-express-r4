@@ -21,8 +21,12 @@
   },
   "homepage": "https://github.com/c99rahul/ts-node-express#readme",
   "dependencies": {
+    "cql-exec-fhir": "^2.1.5",
+    "cql-exec-vsac": "github:dermatologist/cql-exec-vsac",
+    "cql-execution": "^3.0.1",
     "dotenv": "^16.4.5",
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "i": "^0.3.7"
   },
   "devDependencies": {
     "@types/express": "^4.17.21",
