@@ -61,13 +61,14 @@ app.post("/exec", jsonParser, (req: Request, res: Response) => {
           const executor = new cql.Executor(library, codeService);
           executor.exec(patientSource).then((results) => {
             res.send(results);
+            console.log(results);
           }).catch((err) => {
+            res.send(err);
             console.log(err);
           });
     }).catch((err) => {
       console.log(err);
     });
-  res.send("Error");
 });
 /* Start the Express app and listen
  for incoming requests on the specified port */

@@ -163,7 +163,7 @@ Content-Type: application/json
       "valueSets" : {
          "def" : [ {
             "name" : "Diabetes",
-            "id" : "https://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.103.12.1001",
+            "id" : "1",
             "accessLevel" : "Public"
          } ]
       },
@@ -703,5 +703,5 @@ Content-Type: application/json
       }
    }
 },
-"fhirBaseUrl": "http://localhost:8080/fhir"
+"fhirBaseUrl": "https://cloud.alphora.com/sandbox/r4/cqm/fhir"
 }
