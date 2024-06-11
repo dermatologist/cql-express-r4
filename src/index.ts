@@ -58,13 +58,14 @@ app.post("/exec", jsonParser, (req: Request, res: Response) => {
     .then(() => {
 
       // Value sets are loaded, so execute!
-      const executor = new cql.Executor(library, codeService);
-      executor.exec(patientSource).then((results) => {
-        res.send(results);
-      }).catch((err) => {
-        console.log(err);
-      }
-      );
+          const executor = new cql.Executor(library, codeService);
+          executor.exec(patientSource).then((results) => {
+            res.send(results);
+          }).catch((err) => {
+            console.log(err);
+          });
+    }).catch((err) => {
+      console.log(err);
     });
   res.send("Error");
 });
