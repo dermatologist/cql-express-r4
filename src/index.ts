@@ -1,7 +1,9 @@
 // src/index.ts
 import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
-
+import cql from "cql-execution";
+import cqlfhir from "cql-exec-fhir";
+import cqlvsac from "cql-exec-vsac";
 /*
  * Load up and parse configuration details from
  * the `.env` file to the `process.env`
@@ -21,6 +23,12 @@ const port = process.env.PORT || 3000;
  using the HTTP GET method */
 app.get("/", (req: Request, res: Response) => {
   res.send("Express + TypeScript Server");
+});
+
+app.post("/exec", (req: Request, res: Response) => {
+    const umlsKey = process.env.UMLS_API_KEY || "";
+
+
 });
 
 /* Start the Express app and listen
