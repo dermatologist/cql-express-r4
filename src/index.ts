@@ -61,7 +61,7 @@ app.post("/", jsonParser, (req: Request, res: Response) => {
           const executor = new cql.Executor(library, codeService);
           executor.exec(patientSource).then((results) => {
             res.send(results);
-            console.log(results);
+            // console.log(results);
           }).catch((err) => {
             res.send(err);
             console.log(err);

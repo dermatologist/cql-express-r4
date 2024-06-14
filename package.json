@@ -24,7 +24,7 @@
     "body-parser": "^1.20.2",
     "cql-exec-fhir": "^2.1.5",
     "cql-exec-vsac": "github:dermatologist/cql-exec-vsac",
-    "cql-execution": "^3.0.1",
+    "cql-execution": "file:../cql-execution",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "i": "^0.3.7"
