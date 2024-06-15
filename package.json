@@ -27,7 +27,8 @@
     "cql-execution": "file:../cql-execution",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
-    "i": "^0.3.7"
+    "i": "^0.3.7",
+    "medpromptjs": "^0.2.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.21",
