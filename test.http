@@ -362,8 +362,8 @@ Content-Type: application/json
                   "source" : [ {
                      "alias" : "P",
                      "expression" : {
-                        "dataType" : "{http://hl7.org/fhir}Procedure",
-                        "templateId" : "http://hl7.org/fhir/StructureDefinition/Procedure",
+                        "dataType" : "{http://hl7.org/fhir}DocumentReference",
+                        "templateId" : "http://hl7.org/fhir/StructureDefinition/DocumentReference",
                         "codeProperty" : "code",
                         "codeComparator" : "~",
                         "type" : "Retrieve",
