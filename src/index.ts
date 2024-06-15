@@ -7,6 +7,8 @@ import cqlvsac from "cql-exec-vsac";
 import fs from "fs";
 import path from "path";
 import bodyParser from "body-parser";
+import LLMService  from "./llmService";
+import bootstrap from "./bootstrap";
 /*
  * Load up and parse configuration details from
  * the `.env` file to the `process.env`
@@ -42,6 +44,12 @@ app.post("/", jsonParser, (req: Request, res: Response) => {
     };
     const library = new cql.Library(elmFile, new cql.Repository(libraries));
 
+    const llmService = new LLMService(
+      bootstrap(),
+      "",
+      "",
+      "",
+    );
     // Create the patient source
     let patientSource = cqlfhir.PatientSource.FHIRv401();
     patientSource.loadBundles(fhirBundles);
@@ -58,7 +66,7 @@ app.post("/", jsonParser, (req: Request, res: Response) => {
     .then(() => {
 
       // Value sets are loaded, so execute!
-          const executor = new cql.Executor(library, codeService);
+          const executor = new cql.Executor(library, codeService, llmService);
           executor.exec(patientSource).then((results) => {
             res.send(results);
             // console.log(results);
