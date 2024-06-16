@@ -5,6 +5,7 @@ class LlmService extends BaseChain {
 
   async checkAssertion(expression, context): Promise<boolean> {
     console.log("\nChecking assertion with expression: ", expression);
+    console.log("\n and context: ", context);
     return true;
   }
 

@@ -99,6 +99,89 @@ Content-Type: application/json
     },
     {
       "resource": {
+                     "author": [
+                        {
+                           "display": "Dr. Superman",
+                           "reference": "Practitioner/345"
+                        }
+                     ],
+                     "category": [
+                        {
+                           "coding": [
+                           {
+                              "code": "clinical-note",
+                              "display": "Clinical Note",
+                              "system": "http://hl7.org/fhir/us/core/CodeSystem/us-core-documentreference-category"
+                           }
+                           ]
+                        }
+                     ],
+                     "content": [
+                        {
+                           "attachment": {
+                           "contentType": "text/plain; charset=utf-8",
+                           "data": "MjAyMy0wMS0wMQ0KIyBDaGllZiBDb21wbGFpbnQNCk5vIGNvbXBsYWludHMuDQoNCiMgSGlzdG9yeSBvZiBQcmVzZW50IElsbG5lc3MNClNwaWRlcm1hbiBpcyBhIDI1IHllYXItb2xkIG5vbi1IaXNwYW5pYyB3aGl0ZSBtYWxlLiBQYXRpZW50IGhhcyBhIGhpc3Rvcnkgb2YgYWN1dGUgYnJvbmNoaXRpcyAoZGlzb3JkZXIpLCBtZWRpY2F0aW9uIHJldmlldyBkdWUgKHNpdHVhdGlvbiksIG90aXRpcyBtZWRpYSwgc3VzcGVjdGVkIGNvdmlkLTE5LiBQYXRpZW50IGlzIGEga25vd24gYXN0aG1hdGljIGFuZCBkaWFiZXRpYy4NCg0KIyBTb2NpYWwgSGlzdG9yeQ0KIFBhdGllbnQgaGFzIG5ldmVyIHNtb2tlZC4NCg0KDQpQYXRpZW50IGNvbWVzIGZyb20gYSBoaWdoIHNvY2lvZWNvbm9taWMgYmFja2dyb3VuZC4NCg0KDQojIEFsbGVyZ2llcw0KQWxsZXJnaWMgdG8gcGVuaWNpbGxpbg0KDQojIE1lZGljYXRpb25zDQphY2V0YW1pbm9waGVuIDMyNSBtZyBvcmFsIHRhYmxldDsgYW1veGljaWxsaW4gNTAwIG1nIG9yYWwgdGFibGV0OyBjZWZ1cm94aW1lIDI1MCBtZyBvcmFsIHRhYmxldDsgaWJ1cHJvZmVuIDEwMCBtZyBvcmFsIHRhYmxldDsgYWNldGFtaW5vcGhlbiAxNjAgbWcgY2hld2FibGUgdGFibGV0DQoNCiMgUHJvY2VkdXJlcw0KUGF0aWVudCBoYXMgdW5kZXJnb25lIGxlZnQgaW5ndWluYWwgcmVwYWlyIGFuZCBhcHBlbmRpY2VjdG9teS4gDQoNCiMgQXNzZXNzbWVudCBhbmQgUGxhbg0KUGF0aWVudCBpcyBwcmVzZW50aW5nIHdpdGggbWVkaWNhdGlvbiByZXZpZXcgZHVlIChzaXR1YXRpb24pLiANCg0KIyMgUGxhbg0KUGF0aWVudCB3YXMgZ2l2ZW4gdGhlIGZvbGxvd2luZyBpbW11bml6YXRpb25zOiBpbmZsdWVuemEsIHNlYXNvbmFsLCBpbmplY3RhYmxlLCBwcmVzZXJ2YXRpdmUgZnJlZS4gDQpUaGUgZm9sbG93aW5nIHByb2NlZHVyZXMgd2VyZSBjb25kdWN0ZWQ6DQo="
+                           },
+                           "format": {
+                           "code": "urn:ihe:iti:xds:2017:mimeTypeSufficient",
+                           "display": "mimeType Sufficient",
+                           "system": "http://ihe.net/fhir/ihe.formatcode.fhir/CodeSystem/formatcode"
+                           }
+                        }
+                     ],
+                     "context": {
+                        "encounter": [
+                           {
+                           "reference": "Encounter/345"
+                           }
+                        ],
+                        "period": {
+                           "end": "2023-11-14T05:25:14-06:00",
+                           "start": "2023-11-14T05:10:14-06:00"
+                        }
+                     },
+                     "custodian": {
+                        "display": "INPATIENT CLINIC",
+                        "reference": "Organization/232"
+                     },
+                     "date": "2023-11-14T05:10:14.921-06:00",
+                     "id": "123",
+                     "identifier": [
+                        {
+                           "system": "urn:ietf:rfc:3986",
+                           "value": "urn:uuid:bfdf5c0f-f1c2-be14-7c17-7a0fa06edd81"
+                        }
+                     ],
+                     "meta": {
+                        "lastUpdated": "2023-12-29T17:42:00.422458+00:00",
+                        "profile": [
+                           "http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference"
+                        ],
+                        "versionId": "MTcwMzg3MTcyMDQyMjQ1ODAwMA"
+                     },
+                     "resourceType": "DocumentReference",
+                     "status": "current",
+                     "subject": {
+                        "reference": "Patient/456"
+                     },
+                     "type": {
+                        "coding": [
+                           {
+                           "code": "34117-2",
+                           "display": "History and physical note",
+                           "system": "http://loinc.org"
+                           },
+                           {
+                           "code": "51847-2",
+                           "display": "Evaluation + Plan note",
+                           "system": "http://loinc.org"
+                           }
+                        ]
+                     }
+                     }
+    },
+    {
+      "resource": {
         "resourceType": "Procedure",
         "id": "2-4",
         "subject": {
