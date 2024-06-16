@@ -120,7 +120,7 @@ Content-Type: application/json
                         {
                            "attachment": {
                            "contentType": "text/plain; charset=utf-8",
-                           "data": "MjAyMy0wMS0wMQ0KIyBDaGllZiBDb21wbGFpbnQNCk5vIGNvbXBsYWludHMuDQoNCiMgSGlzdG9yeSBvZiBQcmVzZW50IElsbG5lc3MNClNwaWRlcm1hbiBpcyBhIDI1IHllYXItb2xkIG5vbi1IaXNwYW5pYyB3aGl0ZSBtYWxlLiBQYXRpZW50IGhhcyBhIGhpc3Rvcnkgb2YgYWN1dGUgYnJvbmNoaXRpcyAoZGlzb3JkZXIpLCBtZWRpY2F0aW9uIHJldmlldyBkdWUgKHNpdHVhdGlvbiksIG90aXRpcyBtZWRpYSwgc3VzcGVjdGVkIGNvdmlkLTE5LiBQYXRpZW50IGlzIGEga25vd24gYXN0aG1hdGljIGFuZCBkaWFiZXRpYy4NCg0KIyBTb2NpYWwgSGlzdG9yeQ0KIFBhdGllbnQgaGFzIG5ldmVyIHNtb2tlZC4NCg0KDQpQYXRpZW50IGNvbWVzIGZyb20gYSBoaWdoIHNvY2lvZWNvbm9taWMgYmFja2dyb3VuZC4NCg0KDQojIEFsbGVyZ2llcw0KQWxsZXJnaWMgdG8gcGVuaWNpbGxpbg0KDQojIE1lZGljYXRpb25zDQphY2V0YW1pbm9waGVuIDMyNSBtZyBvcmFsIHRhYmxldDsgYW1veGljaWxsaW4gNTAwIG1nIG9yYWwgdGFibGV0OyBjZWZ1cm94aW1lIDI1MCBtZyBvcmFsIHRhYmxldDsgaWJ1cHJvZmVuIDEwMCBtZyBvcmFsIHRhYmxldDsgYWNldGFtaW5vcGhlbiAxNjAgbWcgY2hld2FibGUgdGFibGV0DQoNCiMgUHJvY2VkdXJlcw0KUGF0aWVudCBoYXMgdW5kZXJnb25lIGxlZnQgaW5ndWluYWwgcmVwYWlyIGFuZCBhcHBlbmRpY2VjdG9teS4gDQoNCiMgQXNzZXNzbWVudCBhbmQgUGxhbg0KUGF0aWVudCBpcyBwcmVzZW50aW5nIHdpdGggbWVkaWNhdGlvbiByZXZpZXcgZHVlIChzaXR1YXRpb24pLiANCg0KIyMgUGxhbg0KUGF0aWVudCB3YXMgZ2l2ZW4gdGhlIGZvbGxvd2luZyBpbW11bml6YXRpb25zOiBpbmZsdWVuemEsIHNlYXNvbmFsLCBpbmplY3RhYmxlLCBwcmVzZXJ2YXRpdmUgZnJlZS4gDQpUaGUgZm9sbG93aW5nIHByb2NlZHVyZXMgd2VyZSBjb25kdWN0ZWQ6DQo="
+                           "data": "VGhpcyBwYXRpZW50IHVuZGVyd2VudCBhIHZpc3VhbCBmb290IGV4YW0gcmVjZW50bHku"
                            },
                            "format": {
                            "code": "urn:ihe:iti:xds:2017:mimeTypeSufficient",

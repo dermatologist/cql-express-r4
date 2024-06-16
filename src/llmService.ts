@@ -20,7 +20,11 @@ class LlmService extends BaseChain {
     console.log("\n", _input);
     const response = await this.chain(_input);
     console.log("\nResponse: ", response);
-    return true;
+    if(response.toLocaleLowerCase().includes("true")) {
+      return true;
+    }else {
+      return false;
+    }
   }
 
   printValues(obj) {

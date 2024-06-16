@@ -20,10 +20,16 @@ const bootstrap = async () => {
         model: "phi3"
     });
 
-    const prompt = await pull<ChatPromptTemplate>(
-        "hwchase17/structured-chat-agent"
-    );
+    // const prompt = await pull<ChatPromptTemplate>(
+    //     "hwchase17/structured-chat-agent"
+    // );
 
+    const prompt = ChatPromptTemplate.fromTemplate(
+        `
+        Given the following content: {content}
+        Is the following expression true or false: {expression}
+        `
+    );
     const tools = [
         new DynamicTool({
             name: "FOO",
