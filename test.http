@@ -120,7 +120,7 @@ Content-Type: application/json
                         {
                            "attachment": {
                            "contentType": "text/plain; charset=utf-8",
-                           "data": "VGhpcyBwYXRpZW50IHVuZGVyd2VudCBhIHZpc3VhbCBmb290IGV4YW0gcmVjZW50bHku"
+                           "data": "VGhpcyBwYXRpZW50IHVuZGVyd2VudCBhIHZpc3VhbCBmb290IGV4YW0gb24gMDQvMDEvMjAyNC4="
                            },
                            "format": {
                            "code": "urn:ihe:iti:xds:2017:mimeTypeSufficient",

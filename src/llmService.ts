@@ -15,7 +15,7 @@ class LlmService extends BaseChain {
     // console.log("\n and context: ", _content);
     const _input = {
       "content": _content.replace(/(\r\n|\n|\r)/gm," "),
-      "expression": this.printValues(_expression)
+      "expression": this.printValues(_expression) + ". Today is " + new Date()
     }
     console.log("\n", _input);
     const response = await this.chain(_input);
