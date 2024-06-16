@@ -14,8 +14,9 @@ class LlmService extends BaseChain {
     });
     // console.log("\n and context: ", _content);
     const _input = {
-      "content": _content.replace(/(\r\n|\n|\r)/gm," "),
-      "expression": this.printValues(_expression) + ". Today is " + new Date()
+      "content": this.findDatesAndConvertToTimeElapsed(_content.replace(/(\r\n|\n|\r)/gm," ")),
+      "expression": this.printValues(_expression),
+      "today": new Date().toUTCString()
     }
     console.log("\n", _input);
     const response = await this.chain(_input);
@@ -46,6 +47,23 @@ class LlmService extends BaseChain {
     return this.camelToString(this.string_expression);
   }
 
+
+  findDatesAndConvertToTimeElapsed(text){
+    // Regular expression to match dates in format of 'mm/dd/yyyy' or 'mm-dd-yyyy'
+    const dateRegex = /(\d{1,2}[-/]\d{1,2}[-/]\d{4})/g;
+    let matches;
+    let currentDate = new Date();
+
+    while (( matches = dateRegex.exec(text) ) !== null) {
+      let date = new Date(matches[0]);
+      let timeElapsed = (currentDate.getTime() - date.getTime()) / (1000 * 60 * 60 * 24);
+      text = text.replace(matches[0], Math.floor(timeElapsed));
+      text += " days ago.";
+    }
+
+    console.log(text);
+    return text;
+  }
 
   camelToString(camelCase) {
     return camelCase.replace(/([A-Z])/g, ' $1')

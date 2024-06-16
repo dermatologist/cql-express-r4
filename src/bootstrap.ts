@@ -27,8 +27,10 @@ const bootstrap = async () => {
     const prompt = ChatPromptTemplate.fromTemplate(
         `
         Given the following content: {content}
-        Is the following expression true or false: {expression}
-        `
+
+        Is the following expression true or false on {today}: {expression}
+
+        Answer true or false with a reason.`
     );
     const tools = [
         new DynamicTool({
