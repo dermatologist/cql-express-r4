@@ -1,21 +1,22 @@
 import { BaseChain } from "medpromptjs";
 
 
-class LLMService extends BaseChain {
+class LlmService extends BaseChain {
 
-  checkAssertion() {
+  async checkAssertion(expression, context): Promise<boolean> {
+    console.log("\nChecking assertion with expression: ", expression);
     return true;
   }
 
-  checkMention() {
+  async checkMention(expression, context): Promise<boolean> {
     return true;
   }
 
-  checkNegation() {
+  async checkNegation(expression, context): Promise<boolean> {
     return true;
   }
 
 
 }
 
-export default LLMService;
+export default LlmService;
