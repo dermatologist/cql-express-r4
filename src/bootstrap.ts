@@ -11,7 +11,7 @@ import { DynamicTool, DynamicStructuredTool } from "@langchain/core/tools";
 
 const bootstrap = async () => {
     const google_vertex_ai = new GoogleVertexAI({
-        model: "text-bison",
+        model: "text-bison@001",
         temperature: 0.2,
     });
 
@@ -26,11 +26,17 @@ const bootstrap = async () => {
 
     const prompt = ChatPromptTemplate.fromTemplate(
         `
-        Given the following content: {content}
+        Knowing:
+        A year has 365 days and a month has 30 days.
+        If it is less than a given period, then it is within the period.
 
-        Is the following expression true or false on {today}: {expression}
+        Given the following content:
+        {content}
 
-        Answer true or false with a reason.`
+        Is the following expression true or false:
+        {expression}
+
+        Answer should begin with true or false. Then give a reason why.`
     );
     const tools = [
         new DynamicTool({

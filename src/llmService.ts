@@ -15,8 +15,7 @@ class LlmService extends BaseChain {
     // console.log("\n and context: ", _content);
     const _input = {
       "content": this.findDatesAndConvertToTimeElapsed(_content.replace(/(\r\n|\n|\r)/gm," ")),
-      "expression": this.printValues(_expression),
-      "today": new Date().toUTCString()
+      "expression": this.printValues(_expression)
     }
     console.log("\n", _input);
     const response = await this.chain(_input);
