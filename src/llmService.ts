@@ -8,11 +8,18 @@ class LlmService extends BaseChain {
     const _expression = JSON.parse(expression);
     const _context = JSON.parse(context);
     let _content = ""
-    console.log("\nChecking assertion with expression: ", this.printValues(_expression));
+    // console.log("\nChecking assertion with expression: ", this.printValues(_expression));
     _context.forEach(element => {
           _content += atob(element.content[0].attachment.data.value);
     });
-    console.log("\n and context: ", _content);
+    // console.log("\n and context: ", _content);
+    const _input = {
+      "content": _content.replace(/(\r\n|\n|\r)/gm," "),
+      "expression": this.printValues(_expression)
+    }
+    console.log("\n", _input);
+    const response = await this.chain(_input);
+    console.log("\nResponse: ", response);
     return true;
   }
 
