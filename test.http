@@ -15,7 +15,7 @@ Content-Type: application/json
     {
       "resource": {
         "resourceType": "Patient",
-        "id": "Recent_Foot_Exam",
+        "id": "Patient_1",
         "gender": "female",
         "birthDate": "1979-01-30"
       }
@@ -52,7 +52,7 @@ Content-Type: application/json
           ]
         },
         "subject": {
-          "reference": "Patient/Recent_Foot_Exam"
+          "reference": "Patient/Patient_1"
         },
         "onsetDateTime": "2015-01-30"
       }
@@ -62,7 +62,7 @@ Content-Type: application/json
         "resourceType": "Procedure",
         "id": "2-2",
         "subject": {
-          "reference": "Patient/Recent_Foot_Exam"
+          "reference": "Patient/Patient_1"
         },
         "status": "completed",
         "code": {
@@ -82,7 +82,7 @@ Content-Type: application/json
         "resourceType": "Procedure",
         "id": "2-3",
         "subject": {
-          "reference": "Patient/Recent_Foot_Exam"
+          "reference": "Patient/Patient_1"
         },
         "status": "completed",
         "code": {
@@ -185,7 +185,7 @@ Content-Type: application/json
         "resourceType": "Procedure",
         "id": "2-4",
         "subject": {
-          "reference": "Patient/Recent_Foot_Exam"
+          "reference": "Patient/Patient_1"
         },
         "status": "completed",
         "code": {
