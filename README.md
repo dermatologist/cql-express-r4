@@ -1,4 +1,5 @@
 # CQL Express R4
+A demo project that demonstrates how to setup an Express server to execute CQL (Clinical Quality Language) with LLM support. See related projects for more details.
 
 ## Related projects
 * [cql-execution](https://github.com/dermatologist/cql-execution)
