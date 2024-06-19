@@ -1,12 +1,8 @@
-# TypeScript x Express x Node.js
+# CQL Express R4
 
-This repository contains a basic TypeScript Express application that utilizes Node.js for server-side functionality. It is configured with Nodemon for automatic server restarts during development and uses ts-node for TypeScript execution.
-
-If you are not familiar with a TypeScript workflow, consider checking out [the JavaScript branch](https://github.com/c99rahul/ts-node-express/tree/javascript) of this repository.
-
-Feeling lost? Go through [the tutorial](https://blog.logrocket.com/how-to-set-up-node-typescript-express/) that this repository is built upon.
-
-![Monitoring the Changes Detected By Nodemon](https://github.com/c99rahul/ts-node-express/assets/70071346/888bfc19-7034-4270-9696-04fc2b9fcb29)
+## Related projects
+* [cql-execution](https://github.com/dermatologist/cql-execution)
+* [cql-exec-vsac](https://github.com/dermatologist/cql-exec-vsac)
 
 ## Prerequisites
 
@@ -20,13 +16,13 @@ Before you begin, ensure you have the following installed on your machine:
 Clone the repository to your local machine:
 
 ```
-git clone https://github.com/c99rahul/ts-node-express.git
+git clone https://github.com/dermatologist/cql-express-r4.git
 ```
 
 Navigate to the project directory:
 
 ```
-cd ts-node-express/
+cd cql-express-r4/
 ```
 
 Install the project dependencies including TypeScript and Nodemon:
@@ -64,6 +60,9 @@ The project structure is organized as follows:
 
 You can customize the project configuration i nthe `tsconfig.json` file and adjust the server settings in the `src/index.ts` file.
 
-## License
+## Give us a star ⭐️
+If you find this project useful, give us a star. It helps others discover the project.
 
-This project is licensed under the MIT License - see the [LICENSE](/LICENSE) file for details.
+## Contributors
+
+* [Bell Eapen](https://nuchange.ca) | [![Twitter Follow](https://img.shields.io/twitter/follow/beapen?style=social)](https://twitter.com/beapen)
