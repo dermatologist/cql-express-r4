@@ -1,4 +1,4 @@
-# CQL Express R4
+# 🔧 [LLM-in-the Loop CQL execution](https://nuchange.ca/2024/06/llm-in-the-loop-cql-execution.html)
 
 ## About
 CQL is a domain-specific language that allows clinicians and researchers to express queries and retrieve data from electronic health records (EHRs) in a standardized and interoperable way. CQL supports the use of terminology services, which are external services that provide mappings and translations between different code systems and value sets.
