@@ -7,6 +7,8 @@ import cqlvsac from "cql-exec-vsac";
 import fs from "fs";
 import path from "path";
 import bodyParser from "body-parser";
+import LlmService  from "./llmService";
+import bootstrap from "./bootstrap";
 /*
  * Load up and parse configuration details from
  * the `.env` file to the `process.env`
@@ -31,7 +33,7 @@ app.get("/", (req: Request, res: Response) => {
   res.send("CQL Execution Service is running! Post to this URL with fhirBundles, cqlJson and fhirBaseUrl (for terminology) as params.");
 });
 
-app.post("/", jsonParser, (req: Request, res: Response) => {
+app.post("/", jsonParser, async (req: Request, res: Response)  => {
     const umlsKey = process.env.UMLS_API_KEY || "";
     const fhirBundles = req.body.fhirBundles;
     const cqlJson = req.body.cqlJson;
@@ -42,6 +44,12 @@ app.post("/", jsonParser, (req: Request, res: Response) => {
     };
     const library = new cql.Library(elmFile, new cql.Repository(libraries));
 
+
+    const llmService = await new LlmService(
+      await bootstrap(),
+      "",
+      "",
+    );
     // Create the patient source
     let patientSource = cqlfhir.PatientSource.FHIRv401();
     patientSource.loadBundles(fhirBundles);
@@ -58,10 +66,10 @@ app.post("/", jsonParser, (req: Request, res: Response) => {
     .then(() => {
 
       // Value sets are loaded, so execute!
-          const executor = new cql.Executor(library, codeService);
+          const executor = new cql.Executor(library, codeService, undefined, undefined, llmService);
           executor.exec(patientSource).then((results) => {
             res.send(results);
-            console.log(results);
+            // console.log(results);
           }).catch((err) => {
             res.send(err);
             console.log(err);

@@ -15,7 +15,7 @@ Content-Type: application/json
     {
       "resource": {
         "resourceType": "Patient",
-        "id": "Recent_Foot_Exam",
+        "id": "Patient_1",
         "gender": "female",
         "birthDate": "1979-01-30"
       }
@@ -52,7 +52,7 @@ Content-Type: application/json
           ]
         },
         "subject": {
-          "reference": "Patient/Recent_Foot_Exam"
+          "reference": "Patient/Patient_1"
         },
         "onsetDateTime": "2015-01-30"
       }
@@ -62,7 +62,7 @@ Content-Type: application/json
         "resourceType": "Procedure",
         "id": "2-2",
         "subject": {
-          "reference": "Patient/Recent_Foot_Exam"
+          "reference": "Patient/Patient_1"
         },
         "status": "completed",
         "code": {
@@ -82,7 +82,7 @@ Content-Type: application/json
         "resourceType": "Procedure",
         "id": "2-3",
         "subject": {
-          "reference": "Patient/Recent_Foot_Exam"
+          "reference": "Patient/Patient_1"
         },
         "status": "completed",
         "code": {
@@ -99,10 +99,93 @@ Content-Type: application/json
     },
     {
       "resource": {
+                     "author": [
+                        {
+                           "display": "Dr. Superman",
+                           "reference": "Practitioner/345"
+                        }
+                     ],
+                     "category": [
+                        {
+                           "coding": [
+                           {
+                              "code": "clinical-note",
+                              "display": "Clinical Note",
+                              "system": "http://hl7.org/fhir/us/core/CodeSystem/us-core-documentreference-category"
+                           }
+                           ]
+                        }
+                     ],
+                     "content": [
+                        {
+                           "attachment": {
+                           "contentType": "text/plain; charset=utf-8",
+                           "data": "VGhpcyBwYXRpZW50IHVuZGVyd2VudCBhIHZpc3VhbCBmb290IGV4YW0gb24gMDQvMDEvMjAyNC4="
+                           },
+                           "format": {
+                           "code": "urn:ihe:iti:xds:2017:mimeTypeSufficient",
+                           "display": "mimeType Sufficient",
+                           "system": "http://ihe.net/fhir/ihe.formatcode.fhir/CodeSystem/formatcode"
+                           }
+                        }
+                     ],
+                     "context": {
+                        "encounter": [
+                           {
+                           "reference": "Encounter/345"
+                           }
+                        ],
+                        "period": {
+                           "end": "2023-11-14T05:25:14-06:00",
+                           "start": "2023-11-14T05:10:14-06:00"
+                        }
+                     },
+                     "custodian": {
+                        "display": "INPATIENT CLINIC",
+                        "reference": "Organization/232"
+                     },
+                     "date": "2023-11-14T05:10:14.921-06:00",
+                     "id": "123",
+                     "identifier": [
+                        {
+                           "system": "urn:ietf:rfc:3986",
+                           "value": "urn:uuid:bfdf5c0f-f1c2-be14-7c17-7a0fa06edd81"
+                        }
+                     ],
+                     "meta": {
+                        "lastUpdated": "2023-12-29T17:42:00.422458+00:00",
+                        "profile": [
+                           "http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference"
+                        ],
+                        "versionId": "MTcwMzg3MTcyMDQyMjQ1ODAwMA"
+                     },
+                     "resourceType": "DocumentReference",
+                     "status": "current",
+                     "subject": {
+                        "reference": "Patient/456"
+                     },
+                     "type": {
+                        "coding": [
+                           {
+                           "code": "34117-2",
+                           "display": "History and physical note",
+                           "system": "http://loinc.org"
+                           },
+                           {
+                           "code": "51847-2",
+                           "display": "Evaluation + Plan note",
+                           "system": "http://loinc.org"
+                           }
+                        ]
+                     }
+                     }
+    },
+    {
+      "resource": {
         "resourceType": "Procedure",
         "id": "2-4",
         "subject": {
-          "reference": "Patient/Recent_Foot_Exam"
+          "reference": "Patient/Patient_1"
         },
         "status": "completed",
         "code": {
@@ -121,589 +204,760 @@ Content-Type: application/json
 }
 ],
 "cqlJson": {
-   "library" : {
-      "annotation" : [ {
-         "translatorOptions" : "",
-         "type" : "CqlToElmInfo"
-      } ],
-      "identifier" : {
-         "id" : "DiabeticFootExam",
-         "version" : "1.0.0"
-      },
-      "schemaIdentifier" : {
-         "id" : "urn:hl7-org:elm",
-         "version" : "r1"
-      },
-      "usings" : {
-         "def" : [ {
-            "localIdentifier" : "System",
-            "uri" : "urn:hl7-org:elm-types:r1"
-         }, {
-            "localIdentifier" : "FHIR",
-            "uri" : "http://hl7.org/fhir",
-            "version" : "4.0.1"
-         } ]
-      },
-      "includes" : {
-         "def" : [ {
-            "localIdentifier" : "FHIRHelpers",
-            "path" : "FHIRHelpers",
-            "version" : "4.0.1"
-         } ]
-      },
-      "codeSystems" : {
-         "def" : [ {
-            "name" : "SNOMEDCT",
-            "id" : "http://snomed.info/sct",
-            "accessLevel" : "Public"
-         }, {
-            "name" : "CONDITION-VER-STATUS",
-            "id" : "http://terminology.hl7.org/CodeSystem/condition-ver-status",
-            "accessLevel" : "Public"
-         } ]
-      },
-      "valueSets" : {
-         "def" : [ {
-            "name" : "Diabetes",
-            "id" : "1",
-            "accessLevel" : "Public"
-         } ]
-      },
-      "codes" : {
-         "def" : [ {
-            "name" : "Confirmed code",
-            "id" : "confirmed",
-            "display" : "Confirmed",
-            "accessLevel" : "Public",
-            "codeSystem" : {
-               "name" : "CONDITION-VER-STATUS"
-            }
-         }, {
-            "name" : "Diabetic foot examination (regime/therapy) code",
-            "id" : "401191002",
-            "display" : "Diabetic foot examination (regime/therapy)",
-            "accessLevel" : "Public",
-            "codeSystem" : {
-               "name" : "SNOMEDCT"
-            }
-         }, {
-            "name" : "Monofilament foot sensation test (procedure) code",
-            "id" : "134388005",
-            "display" : "Monofilament foot sensation test (procedure)",
-            "accessLevel" : "Public",
-            "codeSystem" : {
-               "name" : "SNOMEDCT"
-            }
-         }, {
-            "name" : "Pedal pulse taking (procedure) code",
-            "id" : "91161007",
-            "display" : "Pedal pulse taking (procedure)",
-            "accessLevel" : "Public",
-            "codeSystem" : {
-               "name" : "SNOMEDCT"
-            }
-         } ]
-      },
-      "concepts" : {
-         "def" : [ {
-            "name" : "Confirmed",
-            "display" : "Confirmed",
-            "accessLevel" : "Public",
-            "code" : [ {
-               "name" : "Confirmed code"
-            } ]
-         }, {
-            "name" : "Diabetic foot examination (regime/therapy)",
-            "display" : "Diabetic foot examination (regime/therapy)",
-            "accessLevel" : "Public",
-            "code" : [ {
-               "name" : "Diabetic foot examination (regime/therapy) code"
-            } ]
-         }, {
-            "name" : "Monofilament foot sensation test (procedure)",
-            "display" : "Monofilament foot sensation test (procedure)",
-            "accessLevel" : "Public",
-            "code" : [ {
-               "name" : "Monofilament foot sensation test (procedure) code"
-            } ]
-         }, {
-            "name" : "Pedal pulse taking (procedure)",
-            "display" : "Pedal pulse taking (procedure)",
-            "accessLevel" : "Public",
-            "code" : [ {
-               "name" : "Pedal pulse taking (procedure) code"
-            } ]
-         } ]
-      },
-      "contexts" : {
-         "def" : [ {
-            "name" : "Patient"
-         } ]
-      },
-      "statements" : {
-         "def" : [ {
-            "name" : "Patient",
-            "context" : "Patient",
-            "expression" : {
-               "type" : "SingletonFrom",
-               "operand" : {
-                  "dataType" : "{http://hl7.org/fhir}Patient",
-                  "templateId" : "http://hl7.org/fhir/StructureDefinition/Patient",
-                  "type" : "Retrieve"
-               }
-            }
-         }, {
-            "name" : "InDemographic",
-            "context" : "Patient",
-            "accessLevel" : "Public",
-            "expression" : {
-               "type" : "And",
-               "operand" : [ {
-                  "type" : "GreaterOrEqual",
-                  "operand" : [ {
-                     "precision" : "Year",
-                     "type" : "CalculateAge",
-                     "operand" : {
-                        "path" : "birthDate.value",
-                        "type" : "Property",
-                        "source" : {
-                           "name" : "Patient",
-                           "type" : "ExpressionRef"
-                        }
-                     }
-                  }, {
-                     "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
-                     "value" : "18",
-                     "type" : "Literal"
-                  } ]
-               }, {
-                  "type" : "LessOrEqual",
-                  "operand" : [ {
-                     "precision" : "Year",
-                     "type" : "CalculateAge",
-                     "operand" : {
-                        "path" : "birthDate.value",
-                        "type" : "Property",
-                        "source" : {
-                           "name" : "Patient",
-                           "type" : "ExpressionRef"
-                        }
-                     }
-                  }, {
-                     "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
-                     "value" : "75",
-                     "type" : "Literal"
-                  } ]
-               } ]
-            }
-         }, {
-            "name" : "HasDiabetes",
-            "context" : "Patient",
-            "accessLevel" : "Public",
-            "expression" : {
-               "type" : "Exists",
-               "operand" : {
-                  "type" : "Query",
-                  "source" : [ {
-                     "alias" : "C",
-                     "expression" : {
-                        "dataType" : "{http://hl7.org/fhir}Condition",
-                        "templateId" : "http://hl7.org/fhir/StructureDefinition/Condition",
-                        "codeProperty" : "code",
-                        "codeComparator" : "in",
-                        "type" : "Retrieve",
-                        "codes" : {
-                           "name" : "Diabetes",
-                           "type" : "ValueSetRef"
-                        }
-                     }
-                  } ],
-                  "relationship" : [ ],
-                  "where" : {
-                     "type" : "Equivalent",
-                     "operand" : [ {
-                        "name" : "ToConcept",
-                        "libraryName" : "FHIRHelpers",
-                        "type" : "FunctionRef",
-                        "operand" : [ {
-                           "path" : "verificationStatus",
-                           "scope" : "C",
-                           "type" : "Property"
-                        } ]
-                     }, {
-                        "name" : "Confirmed",
-                        "type" : "ConceptRef"
-                     } ]
-                  }
-               }
-            }
-         }, {
-            "name" : "MeetsInclusionCriteria",
-            "context" : "Patient",
-            "accessLevel" : "Public",
-            "expression" : {
-               "type" : "And",
-               "operand" : [ {
-                  "name" : "InDemographic",
-                  "type" : "ExpressionRef"
-               }, {
-                  "name" : "HasDiabetes",
-                  "type" : "ExpressionRef"
-               } ]
-            }
-         }, {
-            "name" : "HasRecentVisualFootExam",
-            "context" : "Patient",
-            "accessLevel" : "Public",
-            "expression" : {
-               "type" : "Exists",
-               "operand" : {
-                  "type" : "Query",
-                  "source" : [ {
-                     "alias" : "P",
-                     "expression" : {
-                        "dataType" : "{http://hl7.org/fhir}Procedure",
-                        "templateId" : "http://hl7.org/fhir/StructureDefinition/Procedure",
-                        "codeProperty" : "code",
-                        "codeComparator" : "~",
-                        "type" : "Retrieve",
-                        "codes" : {
-                           "path" : "codes",
-                           "type" : "Property",
-                           "source" : {
-                              "name" : "Diabetic foot examination (regime/therapy)",
-                              "type" : "ConceptRef"
-                           }
-                        }
-                     }
-                  } ],
-                  "relationship" : [ ],
-                  "where" : {
-                     "type" : "And",
-                     "operand" : [ {
-                        "type" : "Equal",
-                        "operand" : [ {
-                           "path" : "value",
-                           "type" : "Property",
-                           "source" : {
-                              "path" : "status",
-                              "scope" : "P",
-                              "type" : "Property"
-                           }
-                        }, {
-                           "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                           "value" : "completed",
-                           "type" : "Literal"
-                        } ]
-                     }, {
-                        "type" : "And",
-                        "operand" : [ {
-                           "type" : "In",
-                           "operand" : [ {
-                              "path" : "value",
-                              "type" : "Property",
-                              "source" : {
-                                 "strict" : false,
-                                 "type" : "As",
-                                 "operand" : {
-                                    "path" : "performed",
-                                    "scope" : "P",
-                                    "type" : "Property"
-                                 },
-                                 "asTypeSpecifier" : {
-                                    "name" : "{http://hl7.org/fhir}dateTime",
-                                    "type" : "NamedTypeSpecifier"
-                                 }
-                              }
-                           }, {
-                              "lowClosed" : true,
-                              "highClosed" : true,
-                              "type" : "Interval",
-                              "low" : {
-                                 "type" : "Subtract",
-                                 "operand" : [ {
-                                    "type" : "Now"
-                                 }, {
-                                    "value" : 1,
-                                    "unit" : "year",
-                                    "type" : "Quantity"
-                                 } ]
-                              },
-                              "high" : {
-                                 "type" : "Add",
-                                 "operand" : [ {
-                                    "type" : "Now"
-                                 }, {
-                                    "value" : 1,
-                                    "unit" : "year",
-                                    "type" : "Quantity"
-                                 } ]
-                              }
-                           } ]
-                        }, {
-                           "type" : "Not",
-                           "operand" : {
-                              "type" : "IsNull",
-                              "operand" : {
-                                 "type" : "Now"
-                              }
-                           }
-                        } ]
-                     } ]
-                  }
-               }
-            }
-         }, {
-            "name" : "HasRecentSensoryFootExam",
-            "context" : "Patient",
-            "accessLevel" : "Public",
-            "expression" : {
-               "type" : "Exists",
-               "operand" : {
-                  "type" : "Query",
-                  "source" : [ {
-                     "alias" : "P",
-                     "expression" : {
-                        "dataType" : "{http://hl7.org/fhir}Procedure",
-                        "templateId" : "http://hl7.org/fhir/StructureDefinition/Procedure",
-                        "codeProperty" : "code",
-                        "codeComparator" : "~",
-                        "type" : "Retrieve",
-                        "codes" : {
-                           "path" : "codes",
-                           "type" : "Property",
-                           "source" : {
-                              "name" : "Monofilament foot sensation test (procedure)",
-                              "type" : "ConceptRef"
-                           }
-                        }
-                     }
-                  } ],
-                  "relationship" : [ ],
-                  "where" : {
-                     "type" : "And",
-                     "operand" : [ {
-                        "type" : "Equal",
-                        "operand" : [ {
-                           "path" : "value",
-                           "type" : "Property",
-                           "source" : {
-                              "path" : "status",
-                              "scope" : "P",
-                              "type" : "Property"
-                           }
-                        }, {
-                           "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                           "value" : "completed",
-                           "type" : "Literal"
-                        } ]
-                     }, {
-                        "type" : "And",
-                        "operand" : [ {
-                           "type" : "In",
-                           "operand" : [ {
-                              "path" : "value",
-                              "type" : "Property",
-                              "source" : {
-                                 "strict" : false,
-                                 "type" : "As",
-                                 "operand" : {
-                                    "path" : "performed",
-                                    "scope" : "P",
-                                    "type" : "Property"
-                                 },
-                                 "asTypeSpecifier" : {
-                                    "name" : "{http://hl7.org/fhir}dateTime",
-                                    "type" : "NamedTypeSpecifier"
-                                 }
-                              }
-                           }, {
-                              "lowClosed" : true,
-                              "highClosed" : true,
-                              "type" : "Interval",
-                              "low" : {
-                                 "type" : "Subtract",
-                                 "operand" : [ {
-                                    "type" : "Now"
-                                 }, {
-                                    "value" : 1,
-                                    "unit" : "year",
-                                    "type" : "Quantity"
-                                 } ]
-                              },
-                              "high" : {
-                                 "type" : "Add",
-                                 "operand" : [ {
-                                    "type" : "Now"
-                                 }, {
-                                    "value" : 1,
-                                    "unit" : "year",
-                                    "type" : "Quantity"
-                                 } ]
-                              }
-                           } ]
-                        }, {
-                           "type" : "Not",
-                           "operand" : {
-                              "type" : "IsNull",
-                              "operand" : {
-                                 "type" : "Now"
-                              }
-                           }
-                        } ]
-                     } ]
-                  }
-               }
-            }
-         }, {
-            "name" : "HasRecentPedalPulseFootExam",
-            "context" : "Patient",
-            "accessLevel" : "Public",
-            "expression" : {
-               "type" : "Exists",
-               "operand" : {
-                  "type" : "Query",
-                  "source" : [ {
-                     "alias" : "P",
-                     "expression" : {
-                        "dataType" : "{http://hl7.org/fhir}Procedure",
-                        "templateId" : "http://hl7.org/fhir/StructureDefinition/Procedure",
-                        "codeProperty" : "code",
-                        "codeComparator" : "~",
-                        "type" : "Retrieve",
-                        "codes" : {
-                           "path" : "codes",
-                           "type" : "Property",
-                           "source" : {
-                              "name" : "Pedal pulse taking (procedure)",
-                              "type" : "ConceptRef"
-                           }
-                        }
-                     }
-                  } ],
-                  "relationship" : [ ],
-                  "where" : {
-                     "type" : "And",
-                     "operand" : [ {
-                        "type" : "Equal",
-                        "operand" : [ {
-                           "path" : "value",
-                           "type" : "Property",
-                           "source" : {
-                              "path" : "status",
-                              "scope" : "P",
-                              "type" : "Property"
-                           }
-                        }, {
-                           "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                           "value" : "completed",
-                           "type" : "Literal"
-                        } ]
-                     }, {
-                        "type" : "And",
-                        "operand" : [ {
-                           "type" : "In",
-                           "operand" : [ {
-                              "path" : "value",
-                              "type" : "Property",
-                              "source" : {
-                                 "strict" : false,
-                                 "type" : "As",
-                                 "operand" : {
-                                    "path" : "performed",
-                                    "scope" : "P",
-                                    "type" : "Property"
-                                 },
-                                 "asTypeSpecifier" : {
-                                    "name" : "{http://hl7.org/fhir}dateTime",
-                                    "type" : "NamedTypeSpecifier"
-                                 }
-                              }
-                           }, {
-                              "lowClosed" : true,
-                              "highClosed" : true,
-                              "type" : "Interval",
-                              "low" : {
-                                 "type" : "Subtract",
-                                 "operand" : [ {
-                                    "type" : "Now"
-                                 }, {
-                                    "value" : 1,
-                                    "unit" : "year",
-                                    "type" : "Quantity"
-                                 } ]
-                              },
-                              "high" : {
-                                 "type" : "Add",
-                                 "operand" : [ {
-                                    "type" : "Now"
-                                 }, {
-                                    "value" : 1,
-                                    "unit" : "year",
-                                    "type" : "Quantity"
-                                 } ]
-                              }
-                           } ]
-                        }, {
-                           "type" : "Not",
-                           "operand" : {
-                              "type" : "IsNull",
-                              "operand" : {
-                                 "type" : "Now"
-                              }
-                           }
-                        } ]
-                     } ]
-                  }
-               }
-            }
-         }, {
-            "name" : "NeedsFootExam",
-            "context" : "Patient",
-            "accessLevel" : "Public",
-            "expression" : {
-               "type" : "And",
-               "operand" : [ {
-                  "name" : "MeetsInclusionCriteria",
-                  "type" : "ExpressionRef"
-               }, {
-                  "type" : "Or",
-                  "operand" : [ {
-                     "type" : "Or",
-                     "operand" : [ {
-                        "type" : "Not",
-                        "operand" : {
-                           "type" : "IsTrue",
-                           "operand" : {
-                              "name" : "HasRecentVisualFootExam",
-                              "type" : "ExpressionRef"
-                           }
-                        }
-                     }, {
-                        "type" : "Not",
-                        "operand" : {
-                           "type" : "IsTrue",
-                           "operand" : {
-                              "name" : "HasRecentSensoryFootExam",
-                              "type" : "ExpressionRef"
-                           }
-                        }
-                     } ]
-                  }, {
-                     "type" : "Not",
-                     "operand" : {
-                        "type" : "IsTrue",
-                        "operand" : {
-                           "name" : "HasRecentPedalPulseFootExam",
-                           "type" : "ExpressionRef"
-                        }
-                     }
-                  } ]
-               } ]
-            }
-         } ]
+  "library": {
+    "annotation": [
+      {
+        "translatorOptions": "",
+        "type": "CqlToElmInfo"
       }
-   }
+    ],
+    "identifier": {
+      "id": "DiabeticFootExam",
+      "version": "1.0.0"
+    },
+    "schemaIdentifier": {
+      "id": "urn:hl7-org:elm",
+      "version": "r1"
+    },
+    "usings": {
+      "def": [
+        {
+          "localIdentifier": "System",
+          "uri": "urn:hl7-org:elm-types:r1"
+        },
+        {
+          "localIdentifier": "FHIR",
+          "uri": "http://hl7.org/fhir",
+          "version": "4.0.1"
+        }
+      ]
+    },
+    "includes": {
+      "def": [
+        {
+          "localIdentifier": "FHIRHelpers",
+          "path": "FHIRHelpers",
+          "version": "4.0.1"
+        }
+      ]
+    },
+    "codeSystems": {
+      "def": [
+        {
+          "name": "SNOMEDCT",
+          "id": "http://snomed.info/sct",
+          "accessLevel": "Public"
+        },
+        {
+          "name": "CONDITION-VER-STATUS",
+          "id": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+          "accessLevel": "Public"
+        }
+      ]
+    },
+    "valueSets": {
+      "def": [
+        {
+          "name": "Diabetes",
+          "id": "1",
+          "accessLevel": "Public"
+        }
+      ]
+    },
+    "codes": {
+      "def": [
+        {
+          "name": "Confirmed code",
+          "id": "confirmed",
+          "display": "Confirmed",
+          "accessLevel": "Public",
+          "codeSystem": {
+            "name": "CONDITION-VER-STATUS"
+          }
+        },
+        {
+          "name": "Diabetic foot examination (regime/therapy) code",
+          "id": "401191002",
+          "display": "Diabetic foot examination (regime/therapy)",
+          "accessLevel": "Public",
+          "codeSystem": {
+            "name": "SNOMEDCT"
+          }
+        },
+        {
+          "name": "Monofilament foot sensation test (procedure) code",
+          "id": "134388005",
+          "display": "Monofilament foot sensation test (procedure)",
+          "accessLevel": "Public",
+          "codeSystem": {
+            "name": "SNOMEDCT"
+          }
+        },
+        {
+          "name": "Pedal pulse taking (procedure) code",
+          "id": "91161007",
+          "display": "Pedal pulse taking (procedure)",
+          "accessLevel": "Public",
+          "codeSystem": {
+            "name": "SNOMEDCT"
+          }
+        }
+      ]
+    },
+    "concepts": {
+      "def": [
+        {
+          "name": "Confirmed",
+          "display": "Confirmed",
+          "accessLevel": "Public",
+          "code": [
+            {
+              "name": "Confirmed code"
+            }
+          ]
+        },
+        {
+          "name": "Diabetic foot examination (regime/therapy)",
+          "display": "Diabetic foot examination (regime/therapy)",
+          "accessLevel": "Public",
+          "code": [
+            {
+              "name": "Diabetic foot examination (regime/therapy) code"
+            }
+          ]
+        },
+        {
+          "name": "Monofilament foot sensation test (procedure)",
+          "display": "Monofilament foot sensation test (procedure)",
+          "accessLevel": "Public",
+          "code": [
+            {
+              "name": "Monofilament foot sensation test (procedure) code"
+            }
+          ]
+        },
+        {
+          "name": "Pedal pulse taking (procedure)",
+          "display": "Pedal pulse taking (procedure)",
+          "accessLevel": "Public",
+          "code": [
+            {
+              "name": "Pedal pulse taking (procedure) code"
+            }
+          ]
+        }
+      ]
+    },
+    "contexts": {
+      "def": [
+        {
+          "name": "Patient"
+        }
+      ]
+    },
+    "statements": {
+      "def": [
+        {
+          "name": "Patient",
+          "context": "Patient",
+          "expression": {
+            "type": "SingletonFrom",
+            "operand": {
+              "dataType": "{http://hl7.org/fhir}Patient",
+              "templateId": "http://hl7.org/fhir/StructureDefinition/Patient",
+              "type": "Retrieve"
+            }
+          }
+        },
+        {
+          "name": "InDemographic",
+          "context": "Patient",
+          "accessLevel": "Public",
+          "expression": {
+            "type": "And",
+            "operand": [
+              {
+                "type": "GreaterOrEqual",
+                "operand": [
+                  {
+                    "precision": "Year",
+                    "type": "CalculateAge",
+                    "operand": {
+                      "path": "birthDate.value",
+                      "type": "Property",
+                      "source": {
+                        "name": "Patient",
+                        "type": "ExpressionRef"
+                      }
+                    }
+                  },
+                  {
+                    "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                    "value": "18",
+                    "type": "Literal"
+                  }
+                ]
+              },
+              {
+                "type": "LessOrEqual",
+                "operand": [
+                  {
+                    "precision": "Year",
+                    "type": "CalculateAge",
+                    "operand": {
+                      "path": "birthDate.value",
+                      "type": "Property",
+                      "source": {
+                        "name": "Patient",
+                        "type": "ExpressionRef"
+                      }
+                    }
+                  },
+                  {
+                    "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                    "value": "75",
+                    "type": "Literal"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "HasDiabetes",
+          "context": "Patient",
+          "accessLevel": "Public",
+          "expression": {
+            "type": "Exists",
+            "operand": {
+              "type": "Query",
+              "source": [
+                {
+                  "alias": "C",
+                  "expression": {
+                    "dataType": "{http://hl7.org/fhir}Condition",
+                    "templateId": "http://hl7.org/fhir/StructureDefinition/Condition",
+                    "codeProperty": "code",
+                    "codeComparator": "in",
+                    "type": "Retrieve",
+                    "codes": {
+                      "name": "Diabetes",
+                      "preserve": true,
+                      "type": "ValueSetRef"
+                    }
+                  }
+                }
+              ],
+              "relationship": [],
+              "where": {
+                "type": "Equivalent",
+                "operand": [
+                  {
+                    "name": "ToConcept",
+                    "libraryName": "FHIRHelpers",
+                    "type": "FunctionRef",
+                    "operand": [
+                      {
+                        "path": "verificationStatus",
+                        "scope": "C",
+                        "type": "Property"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Confirmed",
+                    "type": "ConceptRef"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "name": "MeetsInclusionCriteria",
+          "context": "Patient",
+          "accessLevel": "Public",
+          "expression": {
+            "type": "And",
+            "operand": [
+              {
+                "name": "InDemographic",
+                "type": "ExpressionRef"
+              },
+              {
+                "name": "HasDiabetes",
+                "type": "ExpressionRef"
+              }
+            ]
+          }
+        },
+        {
+          "name": "HasRecentVisualFootExam",
+          "context": "Patient",
+          "accessLevel": "Public",
+          "expression": {
+            "type": "Exists",
+            "operand": {
+              "type": "Query",
+              "source": [
+                {
+                  "alias": "P",
+                  "expression": {
+                    "dataType": "{http://hl7.org/fhir}Procedure",
+                    "templateId": "http://hl7.org/fhir/StructureDefinition/Procedure",
+                    "codeProperty": "code",
+                    "codeComparator": "~",
+                    "type": "Retrieve",
+                    "codes": {
+                      "path": "codes",
+                      "type": "Property",
+                      "source": {
+                        "name": "Diabetic foot examination (regime/therapy)",
+                        "type": "ConceptRef"
+                      }
+                    }
+                  }
+                }
+              ],
+              "relationship": [],
+              "where": {
+                "type": "And",
+                "operand": [
+                  {
+                    "type": "Equal",
+                    "operand": [
+                      {
+                        "path": "value",
+                        "type": "Property",
+                        "source": {
+                          "path": "status",
+                          "scope": "P",
+                          "type": "Property"
+                        }
+                      },
+                      {
+                        "valueType": "{urn:hl7-org:elm-types:r1}String",
+                        "value": "completed",
+                        "type": "Literal"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "And",
+                    "operand": [
+                      {
+                        "type": "In",
+                        "operand": [
+                          {
+                            "path": "value",
+                            "type": "Property",
+                            "source": {
+                              "strict": false,
+                              "type": "As",
+                              "operand": {
+                                "path": "performed",
+                                "scope": "P",
+                                "type": "Property"
+                              },
+                              "asTypeSpecifier": {
+                                "name": "{http://hl7.org/fhir}dateTime",
+                                "type": "NamedTypeSpecifier"
+                              }
+                            }
+                          },
+                          {
+                            "lowClosed": true,
+                            "highClosed": true,
+                            "type": "Interval",
+                            "low": {
+                              "type": "Subtract",
+                              "operand": [
+                                {
+                                  "type": "Now"
+                                },
+                                {
+                                  "value": 1,
+                                  "unit": "year",
+                                  "type": "Quantity"
+                                }
+                              ]
+                            },
+                            "high": {
+                              "type": "Add",
+                              "operand": [
+                                {
+                                  "type": "Now"
+                                },
+                                {
+                                  "value": 1,
+                                  "unit": "year",
+                                  "type": "Quantity"
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "type": "Not",
+                        "operand": {
+                          "type": "IsNull",
+                          "operand": {
+                            "type": "Now"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "name": "HasVisualFootExamThisMonthAbove",
+          "context": "Patient",
+          "accessLevel": "Public",
+          "expression": {
+            "type": "Exists",
+            "operand": {
+              "type": "Query",
+              "source": [
+                {
+                  "alias": "D",
+                  "expression": {
+                    "dataType": "{http://hl7.org/fhir}DocumentReference",
+                    "templateId": "http://hl7.org/fhir/StructureDefinition/DocumentReference",
+                    "type": "Retrieve"
+                  }
+                }
+              ],
+              "relationship": [],
+              "where": {
+                "type": "Equal",
+                "operand": [
+                  {
+                    "path": "value",
+                    "type": "Property",
+                    "source": {
+                      "path": "status",
+                      "scope": "D",
+                      "type": "Property"
+                    }
+                  },
+                  {
+                    "valueType": "{urn:hl7-org:elm-types:r1}String",
+                    "value": "current",
+                    "type": "Literal"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "name": "HasRecentSensoryFootExam",
+          "context": "Patient",
+          "accessLevel": "Public",
+          "expression": {
+            "type": "Exists",
+            "operand": {
+              "type": "Query",
+              "source": [
+                {
+                  "alias": "P",
+                  "expression": {
+                    "dataType": "{http://hl7.org/fhir}Procedure",
+                    "templateId": "http://hl7.org/fhir/StructureDefinition/Procedure",
+                    "codeProperty": "code",
+                    "codeComparator": "~",
+                    "type": "Retrieve",
+                    "codes": {
+                      "path": "codes",
+                      "type": "Property",
+                      "source": {
+                        "name": "Monofilament foot sensation test (procedure)",
+                        "type": "ConceptRef"
+                      }
+                    }
+                  }
+                }
+              ],
+              "relationship": [],
+              "where": {
+                "type": "And",
+                "operand": [
+                  {
+                    "type": "Equal",
+                    "operand": [
+                      {
+                        "path": "value",
+                        "type": "Property",
+                        "source": {
+                          "path": "status",
+                          "scope": "P",
+                          "type": "Property"
+                        }
+                      },
+                      {
+                        "valueType": "{urn:hl7-org:elm-types:r1}String",
+                        "value": "completed",
+                        "type": "Literal"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "And",
+                    "operand": [
+                      {
+                        "type": "In",
+                        "operand": [
+                          {
+                            "path": "value",
+                            "type": "Property",
+                            "source": {
+                              "strict": false,
+                              "type": "As",
+                              "operand": {
+                                "path": "performed",
+                                "scope": "P",
+                                "type": "Property"
+                              },
+                              "asTypeSpecifier": {
+                                "name": "{http://hl7.org/fhir}dateTime",
+                                "type": "NamedTypeSpecifier"
+                              }
+                            }
+                          },
+                          {
+                            "lowClosed": true,
+                            "highClosed": true,
+                            "type": "Interval",
+                            "low": {
+                              "type": "Subtract",
+                              "operand": [
+                                {
+                                  "type": "Now"
+                                },
+                                {
+                                  "value": 1,
+                                  "unit": "year",
+                                  "type": "Quantity"
+                                }
+                              ]
+                            },
+                            "high": {
+                              "type": "Add",
+                              "operand": [
+                                {
+                                  "type": "Now"
+                                },
+                                {
+                                  "value": 1,
+                                  "unit": "year",
+                                  "type": "Quantity"
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "type": "Not",
+                        "operand": {
+                          "type": "IsNull",
+                          "operand": {
+                            "type": "Now"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "name": "HasRecentPedalPulseFootExam",
+          "context": "Patient",
+          "accessLevel": "Public",
+          "expression": {
+            "type": "Exists",
+            "operand": {
+              "type": "Query",
+              "source": [
+                {
+                  "alias": "P",
+                  "expression": {
+                    "dataType": "{http://hl7.org/fhir}Procedure",
+                    "templateId": "http://hl7.org/fhir/StructureDefinition/Procedure",
+                    "codeProperty": "code",
+                    "codeComparator": "~",
+                    "type": "Retrieve",
+                    "codes": {
+                      "path": "codes",
+                      "type": "Property",
+                      "source": {
+                        "name": "Pedal pulse taking (procedure)",
+                        "type": "ConceptRef"
+                      }
+                    }
+                  }
+                }
+              ],
+              "relationship": [],
+              "where": {
+                "type": "And",
+                "operand": [
+                  {
+                    "type": "Equal",
+                    "operand": [
+                      {
+                        "path": "value",
+                        "type": "Property",
+                        "source": {
+                          "path": "status",
+                          "scope": "P",
+                          "type": "Property"
+                        }
+                      },
+                      {
+                        "valueType": "{urn:hl7-org:elm-types:r1}String",
+                        "value": "completed",
+                        "type": "Literal"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "And",
+                    "operand": [
+                      {
+                        "type": "In",
+                        "operand": [
+                          {
+                            "path": "value",
+                            "type": "Property",
+                            "source": {
+                              "strict": false,
+                              "type": "As",
+                              "operand": {
+                                "path": "performed",
+                                "scope": "P",
+                                "type": "Property"
+                              },
+                              "asTypeSpecifier": {
+                                "name": "{http://hl7.org/fhir}dateTime",
+                                "type": "NamedTypeSpecifier"
+                              }
+                            }
+                          },
+                          {
+                            "lowClosed": true,
+                            "highClosed": true,
+                            "type": "Interval",
+                            "low": {
+                              "type": "Subtract",
+                              "operand": [
+                                {
+                                  "type": "Now"
+                                },
+                                {
+                                  "value": 1,
+                                  "unit": "year",
+                                  "type": "Quantity"
+                                }
+                              ]
+                            },
+                            "high": {
+                              "type": "Add",
+                              "operand": [
+                                {
+                                  "type": "Now"
+                                },
+                                {
+                                  "value": 1,
+                                  "unit": "year",
+                                  "type": "Quantity"
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "type": "Not",
+                        "operand": {
+                          "type": "IsNull",
+                          "operand": {
+                            "type": "Now"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "name": "NeedsFootExam",
+          "context": "Patient",
+          "accessLevel": "Public",
+          "expression": {
+            "type": "And",
+            "operand": [
+              {
+                "name": "MeetsInclusionCriteria",
+                "type": "ExpressionRef"
+              },
+              {
+                "type": "Or",
+                "operand": [
+                  {
+                    "type": "Or",
+                    "operand": [
+                      {
+                        "type": "Not",
+                        "operand": {
+                          "type": "IsTrue",
+                          "operand": {
+                            "name": "HasRecentVisualFootExam",
+                            "type": "ExpressionRef"
+                          }
+                        }
+                      },
+                      {
+                        "type": "Not",
+                        "operand": {
+                          "type": "IsTrue",
+                          "operand": {
+                            "name": "HasRecentSensoryFootExam",
+                            "type": "ExpressionRef"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "Not",
+                    "operand": {
+                      "type": "IsTrue",
+                      "operand": {
+                        "name": "HasRecentPedalPulseFootExam",
+                        "type": "ExpressionRef"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
 },
 "fhirBaseUrl": "https://cloud.alphora.com/sandbox/r4/cqm/fhir"
 }

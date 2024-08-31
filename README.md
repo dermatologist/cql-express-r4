@@ -1,12 +1,15 @@
-# TypeScript x Express x Node.js
+# CQL Express R4
 
-This repository contains a basic TypeScript Express application that utilizes Node.js for server-side functionality. It is configured with Nodemon for automatic server restarts during development and uses ts-node for TypeScript execution.
+## About
+CQL is a domain-specific language that allows clinicians and researchers to express queries and retrieve data from electronic health records (EHRs) in a standardized and interoperable way. CQL supports the use of terminology services, which are external services that provide mappings and translations between different code systems and value sets.
 
-If you are not familiar with a TypeScript workflow, consider checking out [the JavaScript branch](https://github.com/c99rahul/ts-node-express/tree/javascript) of this repository.
+One limitation of FHIRPath-based CQL execution is that it cannot handle assertions in the FHIR DocumentReference resource. I have [forked the nodejs CQL execution engine](https://github.com/dermatologist/cql-execution) to add a hook that can call an LLM when it encounters a DocumentReference with unstructured text. The LLM can then execute the CQL with assertions and return the result to the CQL execution engine.
 
-Feeling lost? Go through [the tutorial](https://blog.logrocket.com/how-to-set-up-node-typescript-express/) that this repository is built upon.
+This is an simple express server example of how to use the LLM hook to execute CQL that contains assertions in the DocumentReference resource as unstructured text. See related projects for more details.
 
-![Monitoring the Changes Detected By Nodemon](https://github.com/c99rahul/ts-node-express/assets/70071346/888bfc19-7034-4270-9696-04fc2b9fcb29)
+## Related projects
+* [cql-execution](https://github.com/dermatologist/cql-execution)
+* [cql-exec-vsac](https://github.com/dermatologist/cql-exec-vsac)
 
 ## Prerequisites
 
@@ -20,13 +23,13 @@ Before you begin, ensure you have the following installed on your machine:
 Clone the repository to your local machine:
 
 ```
-git clone https://github.com/c99rahul/ts-node-express.git
+git clone https://github.com/dermatologist/cql-express-r4.git
 ```
 
 Navigate to the project directory:
 
 ```
-cd ts-node-express/
+cd cql-express-r4/
 ```
 
 Install the project dependencies including TypeScript and Nodemon:
@@ -35,8 +38,7 @@ Install the project dependencies including TypeScript and Nodemon:
 npm i
 ```
 
-## Usage
-
+LLM APIs and hyperparameters are defined in the `src/bootstrap.ts` file. You can modify the code to suit your requirements.
 For development purposes, you can run the application using Nodemon to automatically restart the server when changes are detected. Execute the following command:
 
 ```
@@ -52,18 +54,14 @@ npm run build
 npm start
 ```
 
-## Project Structure
+## Usage
+Post to `http://localhost:3000` with fhirBundles, cqlJson and fhirBaseUrl (for terminology) as params.
 
-The project structure is organized as follows:
+🚀 [See example](/test.http)
 
-- `src`: Contains TypeScript source files
-    - `index.ts`: Configures and starts the Express application
-- `dist`: Output directory created during build for compiled TypeScript files
-- `package.json`: Project configuration and dependencies
-- `tsconfig.json`: TypeScript configuration
+## Give us a star ⭐️
+If you find this project useful, give us a star. It helps others discover the project.
 
-You can customize the project configuration i nthe `tsconfig.json` file and adjust the server settings in the `src/index.ts` file.
+## Contributors
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](/LICENSE) file for details.
+* [Bell Eapen](https://nuchange.ca) | [![Twitter Follow](https://img.shields.io/twitter/follow/beapen?style=social)](https://twitter.com/beapen)

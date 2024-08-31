@@ -1,5 +1,5 @@
 {
-  "name": "ts-node-express",
+  "name": "cql-express-r4",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
@@ -11,23 +11,25 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/c99rahul/ts-node-express.git"
+    "url": "git+https://github.com/dermatologist/cql-express-r4.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/c99rahul/ts-node-express/issues"
+    "url": "https://github.com/dermatologist/cql-express-r4/issues"
   },
-  "homepage": "https://github.com/c99rahul/ts-node-express#readme",
+  "homepage": "https://github.com/dermatologist/cql-express-r4#readme",
   "dependencies": {
     "body-parser": "^1.20.2",
     "cql-exec-fhir": "^2.1.5",
     "cql-exec-vsac": "github:dermatologist/cql-exec-vsac",
-    "cql-execution": "^3.0.1",
+    "cql-execution": "github:dermatologist/cql-execution",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
-    "i": "^0.3.7"
+    "google-auth-library": "^8.9.0",
+    "i": "^0.3.7",
+    "medpromptjs": "0.2.2"
   },
   "devDependencies": {
     "@types/express": "^4.17.21",
