@@ -3,9 +3,9 @@
 ## About
 CQL is a domain-specific language that allows clinicians and researchers to express queries and retrieve data from electronic health records (EHRs) in a standardized and interoperable way. CQL supports the use of terminology services, which are external services that provide mappings and translations between different code systems and value sets.
 
-One limitation of FHIRPath-based CQL execution is that it cannot handle assertions in the FHIR DocumentReference resource. I have forked the nodejs CQL execution engine to add a hook that can call an LLM when it encounters a DocumentReference [here](https://github.com/dermatologist/cql-execution).
+One limitation of FHIRPath-based CQL execution is that it cannot handle assertions in the FHIR DocumentReference resource. I have [forked the nodejs CQL execution engine](https://github.com/dermatologist/cql-execution) to add a hook that can call an LLM when it encounters a DocumentReference with unstructured text. The LLM can then execute the CQL with assertions and return the result to the CQL execution engine.
 
-This is an simple express server example of how to use the LLM hook to execute CQL that contains assertions in the DocumentReference resource. See related projects for more details.
+This is an simple express server example of how to use the LLM hook to execute CQL that contains assertions in the DocumentReference resource as unstructured text. See related projects for more details.
 
 ## Related projects
 * [cql-execution](https://github.com/dermatologist/cql-execution)
@@ -38,8 +38,6 @@ Install the project dependencies including TypeScript and Nodemon:
 npm i
 ```
 
-## Usage
-
 LLM APIs and hyperparameters are defined in the `src/bootstrap.ts` file. You can modify the code to suit your requirements.
 For development purposes, you can run the application using Nodemon to automatically restart the server when changes are detected. Execute the following command:
 
@@ -56,17 +54,10 @@ npm run build
 npm start
 ```
 
-## Project Structure
+## Usage
+Post to `http://localhost:3000` with fhirBundles, cqlJson and fhirBaseUrl (for terminology) as params.
 
-The project structure is organized as follows:
-
-- `src`: Contains TypeScript source files
-    - `index.ts`: Configures and starts the Express application
-- `dist`: Output directory created during build for compiled TypeScript files
-- `package.json`: Project configuration and dependencies
-- `tsconfig.json`: TypeScript configuration
-
-You can customize the project configuration i nthe `tsconfig.json` file and adjust the server settings in the `src/index.ts` file.
+🚀 [See example](/test.http)
 
 ## Give us a star ⭐️
 If you find this project useful, give us a star. It helps others discover the project.
