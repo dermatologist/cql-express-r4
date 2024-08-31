@@ -1,5 +1,11 @@
 # CQL Express R4
-A demo project that demonstrates how to setup an Express server to execute CQL (Clinical Quality Language) with LLM support. See related projects for more details.
+
+## About
+CQL is a domain-specific language that allows clinicians and researchers to express queries and retrieve data from electronic health records (EHRs) in a standardized and interoperable way. CQL supports the use of terminology services, which are external services that provide mappings and translations between different code systems and value sets.
+
+One limitation of FHIRPath-based CQL execution is that it cannot handle assertions in the FHIR DocumentReference resource. I have forked the nodejs CQL execution engine to add a hook that can call an LLM when it encounters a DocumentReference [here](https://github.com/dermatologist/cql-execution).
+
+This is an simple express server example of how to use the LLM hook to execute CQL that contains assertions in the DocumentReference resource. See related projects for more details.
 
 ## Related projects
 * [cql-execution](https://github.com/dermatologist/cql-execution)
@@ -34,6 +40,7 @@ npm i
 
 ## Usage
 
+LLM APIs and hyperparameters are defined in the `src/bootstrap.ts` file. You can modify the code to suit your requirements.
 For development purposes, you can run the application using Nodemon to automatically restart the server when changes are detected. Execute the following command:
 
 ```
