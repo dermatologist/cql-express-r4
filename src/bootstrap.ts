@@ -3,35 +3,23 @@ import { container } from "tsyringe";
 import { Ollama } from "@langchain/community/llms/ollama";
 import { ChatPromptTemplate } from "@langchain/core/prompts";
 import { pull } from "langchain/hub";
+import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
 
 import { z } from "zod";
 import { DynamicTool, DynamicStructuredTool } from "@langchain/core/tools";
 
 const bootstrap = async () => {
-
   const ollama = new Ollama({
     baseUrl: "http://localhost:11434",
-    model: "phi3",
+    model: "phi3:mini",
   });
 
-  // const prompt = await pull<ChatPromptTemplate>(
-  //     "hwchase17/structured-chat-agent"
-  // );
+  const google = new ChatGoogleGenerativeAI({
+    model: "gemini-2.0-flash",
+    maxOutputTokens: 2048,
+    apiKey: process.env.GOOGLE_API_KEY,
+  });
 
-  const prompt = ChatPromptTemplate.fromTemplate(
-    `
-        Knowing:
-        A year has 365 days and a month has 30 days.
-        If it is less than a given period, then it is within the period.
-
-        Given the following content:
-        {content}
-
-        Is the following expression true or false:
-        {expression}
-
-        Answer should begin with true or false. Then give a reason why.`
-  );
   const tools = [
     new DynamicTool({
       name: "FOO",
@@ -52,13 +40,19 @@ const bootstrap = async () => {
   ];
 
   container.register("main-llm", {
-    useValue: ollama,
+    useValue: google,
   });
+
+  container.register("chat_model", {
+    useValue: true,
+  });
+
   container.register("tools", {
     useValue: tools,
   });
-  container.register("prompt", {
-    useValue: prompt,
+
+  container.register("baseChain_prompt", {
+    useValue: "",
   });
 
   return container;

@@ -21,15 +21,22 @@
   },
   "homepage": "https://github.com/dermatologist/cql-express-r4#readme",
   "dependencies": {
+    "@langchain/community": "0.3.44",
+    "@langchain/google-genai": "^0.2.9",
     "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
     "cql-exec-fhir": "^2.1.5",
     "cql-exec-vsac": "github:dermatologist/cql-exec-vsac",
     "cql-execution": "github:dermatologist/cql-execution",
-    "dotenv": "^16.4.5",
-    "express": "^4.19.2",
+    "dotenv": "^16.3.1",
+    "express": "^5.1.0",
     "google-auth-library": "^8.9.0",
     "i": "^0.3.7",
-    "medpromptjs": "0.2.3"
+    "langchain": "^0.3.27",
+    "medpromptjs": "file:../medpromptjs",
+    "reflect-metadata": "^0.2.1",
+    "tslog": "^4.9.2",
+    "tsyringe": "^4.8.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.21",
