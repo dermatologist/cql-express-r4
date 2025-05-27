@@ -16,7 +16,7 @@ const bootstrap = async () => {
 
   const google = new ChatGoogleGenerativeAI({
     model: "gemini-2.0-flash",
-    maxOutputTokens: 64,
+    maxOutputTokens: 512,
     apiKey: process.env.GOOGLE_API_KEY,
   });
 
