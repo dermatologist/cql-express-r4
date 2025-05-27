@@ -44,12 +44,12 @@ define HasRecentVisualFootExam:
       and (P.performed as FHIR.dateTime).value within 1 year of Now()
   )
 
-define HasVisualFootExamThisMonthAbove:
+define HasVisibleSignsOfInfection:
    exists(
     [DocumentReference] D
-       where D.status.value = 'current'
-)
-
+      // Adjusted: compare to a string or code, not a concept
+      where D.content[0].attachment.data = 'Visual foot exam showed active infection?'
+   )
 
 define HasRecentSensoryFootExam:
   exists(
