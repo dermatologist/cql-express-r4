@@ -204,689 +204,309 @@ Content-Type: application/json
 }
 ],
 "cqlJson": {
-  "library" : {
-    "type" : "Library",
-    "identifier" : {
-      "type" : "VersionedIdentifier",
-      "id" : "DiabeticFootExam",
-      "version" : "1.0.0"
+  "library": {
+    "annotation": [
+      {
+        "translatorOptions": "",
+        "type": "CqlToElmInfo"
+      }
+    ],
+    "identifier": {
+      "id": "DiabeticFootExam",
+      "version": "1.0.0"
     },
-    "schemaIdentifier" : {
-      "type" : "VersionedIdentifier",
-      "id" : "urn:hl7-org:elm",
-      "version" : "r1"
+    "schemaIdentifier": {
+      "id": "urn:hl7-org:elm",
+      "version": "r1"
     },
-    "usings" : {
-      "type" : "Library$Usings",
-      "def" : [ {
-        "type" : "UsingDef",
-        "localIdentifier" : "System",
-        "uri" : "urn:hl7-org:elm-types:r1"
-      }, {
-        "type" : "UsingDef",
-        "localIdentifier" : "FHIR",
-        "uri" : "http://hl7.org/fhir",
-        "version" : "4.0.1"
-      } ]
-    },
-    "includes" : {
-      "type" : "Library$Includes",
-      "def" : [ {
-        "type" : "IncludeDef",
-        "localIdentifier" : "FHIRHelpers",
-        "path" : "FHIRHelpers",
-        "version" : "4.0.1"
-      } ]
-    },
-    "codeSystems" : {
-      "type" : "Library$CodeSystems",
-      "def" : [ {
-        "type" : "CodeSystemDef",
-        "name" : "SNOMEDCT",
-        "id" : "http://snomed.info/sct",
-        "accessLevel" : "Public"
-      }, {
-        "type" : "CodeSystemDef",
-        "name" : "CONDITION-VER-STATUS",
-        "id" : "http://terminology.hl7.org/CodeSystem/condition-ver-status",
-        "accessLevel" : "Public"
-      } ]
-    },
-    "valueSets" : {
-      "type" : "Library$ValueSets",
-      "def" : [ {
-        "type" : "ValueSetDef",
-        "name" : "Diabetes",
-        "id" : "1",
-        "accessLevel" : "Public"
-      } ]
-    },
-    "codes" : {
-      "type" : "Library$Codes",
-      "def" : [ {
-        "type" : "CodeDef",
-        "codeSystem" : {
-          "type" : "CodeSystemRef",
-          "name" : "CONDITION-VER-STATUS"
+    "usings": {
+      "def": [
+        {
+          "localIdentifier": "System",
+          "uri": "urn:hl7-org:elm-types:r1"
         },
-        "name" : "Confirmed code",
-        "id" : "confirmed",
-        "display" : "Confirmed",
-        "accessLevel" : "Public"
-      }, {
-        "type" : "CodeDef",
-        "codeSystem" : {
-          "type" : "CodeSystemRef",
-          "name" : "SNOMEDCT"
-        },
-        "name" : "Diabetic foot examination (regime/therapy) code",
-        "id" : "401191002",
-        "display" : "Diabetic foot examination (regime/therapy)",
-        "accessLevel" : "Public"
-      }, {
-        "type" : "CodeDef",
-        "codeSystem" : {
-          "type" : "CodeSystemRef",
-          "name" : "SNOMEDCT"
-        },
-        "name" : "Monofilament foot sensation test (procedure) code",
-        "id" : "134388005",
-        "display" : "Monofilament foot sensation test (procedure)",
-        "accessLevel" : "Public"
-      }, {
-        "type" : "CodeDef",
-        "codeSystem" : {
-          "type" : "CodeSystemRef",
-          "name" : "SNOMEDCT"
-        },
-        "name" : "Pedal pulse taking (procedure) code",
-        "id" : "91161007",
-        "display" : "Pedal pulse taking (procedure)",
-        "accessLevel" : "Public"
-      } ]
+        {
+          "localIdentifier": "FHIR",
+          "uri": "http://hl7.org/fhir",
+          "version": "4.0.1"
+        }
+      ]
     },
-    "concepts" : {
-      "type" : "Library$Concepts",
-      "def" : [ {
-        "type" : "ConceptDef",
-        "code" : [ {
-          "type" : "CodeRef",
-          "name" : "Confirmed code"
-        } ],
-        "name" : "Confirmed",
-        "display" : "Confirmed",
-        "accessLevel" : "Public"
-      }, {
-        "type" : "ConceptDef",
-        "code" : [ {
-          "type" : "CodeRef",
-          "name" : "Diabetic foot examination (regime/therapy) code"
-        } ],
-        "name" : "Diabetic foot examination (regime/therapy)",
-        "display" : "Diabetic foot examination (regime/therapy)",
-        "accessLevel" : "Public"
-      }, {
-        "type" : "ConceptDef",
-        "code" : [ {
-          "type" : "CodeRef",
-          "name" : "Monofilament foot sensation test (procedure) code"
-        } ],
-        "name" : "Monofilament foot sensation test (procedure)",
-        "display" : "Monofilament foot sensation test (procedure)",
-        "accessLevel" : "Public"
-      }, {
-        "type" : "ConceptDef",
-        "code" : [ {
-          "type" : "CodeRef",
-          "name" : "Pedal pulse taking (procedure) code"
-        } ],
-        "name" : "Pedal pulse taking (procedure)",
-        "display" : "Pedal pulse taking (procedure)",
-        "accessLevel" : "Public"
-      } ]
+    "includes": {
+      "def": [
+        {
+          "localIdentifier": "FHIRHelpers",
+          "path": "FHIRHelpers",
+          "version": "4.0.1"
+        }
+      ]
     },
-    "contexts" : {
-      "type" : "Library$Contexts",
-      "def" : [ {
-        "type" : "ContextDef",
-        "name" : "Patient"
-      } ]
+    "codeSystems": {
+      "def": [
+        {
+          "name": "SNOMEDCT",
+          "id": "http://snomed.info/sct",
+          "accessLevel": "Public"
+        },
+        {
+          "name": "CONDITION-VER-STATUS",
+          "id": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+          "accessLevel": "Public"
+        }
+      ]
     },
-    "statements" : {
-      "type" : "Library$Statements",
-      "def" : [ {
-        "type" : "ExpressionDef",
-        "expression" : {
-          "type" : "SingletonFrom",
-          "operand" : {
-            "type" : "Retrieve",
-            "dataType" : "{http://hl7.org/fhir}Patient",
-            "templateId" : "http://hl7.org/fhir/StructureDefinition/Patient"
+    "valueSets": {
+      "def": [
+        {
+          "name": "Diabetes",
+          "id": "1",
+          "accessLevel": "Public"
+        }
+      ]
+    },
+    "codes": {
+      "def": [
+        {
+          "name": "Confirmed code",
+          "id": "confirmed",
+          "display": "Confirmed",
+          "accessLevel": "Public",
+          "codeSystem": {
+            "name": "CONDITION-VER-STATUS"
           }
-        },
-        "name" : "Patient",
-        "context" : "Patient"
-      }, {
-        "type" : "ExpressionDef",
-        "expression" : {
-          "type" : "And",
-          "operand" : [ {
-            "type" : "GreaterOrEqual",
-            "operand" : [ {
-              "type" : "CalculateAge",
-              "operand" : {
-                "type" : "Property",
-                "source" : {
-                  "type" : "ExpressionRef",
-                  "name" : "Patient"
-                },
-                "path" : "birthDate.value"
-              },
-              "precision" : "Year"
-            }, {
-              "type" : "Literal",
-              "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
-              "value" : "18"
-            } ]
-          }, {
-            "type" : "LessOrEqual",
-            "operand" : [ {
-              "type" : "CalculateAge",
-              "operand" : {
-                "type" : "Property",
-                "source" : {
-                  "type" : "ExpressionRef",
-                  "name" : "Patient"
-                },
-                "path" : "birthDate.value"
-              },
-              "precision" : "Year"
-            }, {
-              "type" : "Literal",
-              "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
-              "value" : "75"
-            } ]
-          } ]
-        },
-        "name" : "InDemographic",
-        "context" : "Patient",
-        "accessLevel" : "Public"
-      }, {
-        "type" : "ExpressionDef",
-        "expression" : {
-          "type" : "Exists",
-          "operand" : {
-            "type" : "Query",
-            "source" : [ {
-              "type" : "AliasedQuerySource",
-              "expression" : {
-                "type" : "Retrieve",
-                "codes" : {
-                  "type" : "ValueSetRef",
-                  "name" : "Diabetes",
-                  "preserve" : true
-                },
-                "dataType" : "{http://hl7.org/fhir}Condition",
-                "templateId" : "http://hl7.org/fhir/StructureDefinition/Condition",
-                "codeProperty" : "code",
-                "codeComparator" : "in"
-              },
-              "alias" : "C"
-            } ],
-            "relationship" : [ ],
-            "where" : {
-              "type" : "Equivalent",
-              "operand" : [ {
-                "type" : "FunctionRef",
-                "operand" : [ {
-                  "type" : "Property",
-                  "path" : "verificationStatus",
-                  "scope" : "C"
-                } ],
-                "name" : "ToConcept",
-                "libraryName" : "FHIRHelpers"
-              }, {
-                "type" : "ConceptRef",
-                "name" : "Confirmed"
-              } ]
+        }
+      ]
+    },
+    "concepts": {
+      "def": [
+        {
+          "name": "Confirmed",
+          "display": "Confirmed",
+          "accessLevel": "Public",
+          "code": [
+            {
+              "name": "Confirmed code"
+            }
+          ]
+        }
+      ]
+    },
+    "contexts": {
+      "def": [
+        {
+          "name": "Patient"
+        }
+      ]
+    },
+    "statements": {
+      "def": [
+        {
+          "name": "Patient",
+          "context": "Patient",
+          "expression": {
+            "type": "SingletonFrom",
+            "operand": {
+              "dataType": "{http://hl7.org/fhir}Patient",
+              "templateId": "http://hl7.org/fhir/StructureDefinition/Patient",
+              "type": "Retrieve"
             }
           }
         },
-        "name" : "HasDiabetes",
-        "context" : "Patient",
-        "accessLevel" : "Public"
-      }, {
-        "type" : "ExpressionDef",
-        "expression" : {
-          "type" : "And",
-          "operand" : [ {
-            "type" : "ExpressionRef",
-            "name" : "InDemographic"
-          }, {
-            "type" : "ExpressionRef",
-            "name" : "HasDiabetes"
-          } ]
-        },
-        "name" : "MeetsInclusionCriteria",
-        "context" : "Patient",
-        "accessLevel" : "Public"
-      }, {
-        "type" : "ExpressionDef",
-        "expression" : {
-          "type" : "Exists",
-          "operand" : {
-            "type" : "Query",
-            "source" : [ {
-              "type" : "AliasedQuerySource",
-              "expression" : {
-                "type" : "Retrieve",
-                "codes" : {
-                  "type" : "Property",
-                  "source" : {
-                    "type" : "ConceptRef",
-                    "name" : "Diabetic foot examination (regime/therapy)"
-                  },
-                  "path" : "codes"
-                },
-                "dataType" : "{http://hl7.org/fhir}Procedure",
-                "templateId" : "http://hl7.org/fhir/StructureDefinition/Procedure",
-                "codeProperty" : "code",
-                "codeComparator" : "~"
-              },
-              "alias" : "P"
-            } ],
-            "relationship" : [ ],
-            "where" : {
-              "type" : "And",
-              "operand" : [ {
-                "type" : "Equal",
-                "operand" : [ {
-                  "type" : "Property",
-                  "source" : {
-                    "type" : "Property",
-                    "path" : "status",
-                    "scope" : "P"
-                  },
-                  "path" : "value"
-                }, {
-                  "type" : "Literal",
-                  "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                  "value" : "completed"
-                } ]
-              }, {
-                "type" : "And",
-                "operand" : [ {
-                  "type" : "In",
-                  "operand" : [ {
-                    "type" : "Property",
-                    "source" : {
-                      "type" : "As",
-                      "asTypeSpecifier" : {
-                        "type" : "NamedTypeSpecifier",
-                        "name" : "{http://hl7.org/fhir}dateTime"
-                      },
-                      "operand" : {
-                        "type" : "Property",
-                        "path" : "performed",
-                        "scope" : "P"
-                      },
-                      "strict" : false
-                    },
-                    "path" : "value"
-                  }, {
-                    "type" : "Interval",
-                    "low" : {
-                      "type" : "Subtract",
-                      "operand" : [ {
-                        "type" : "Now"
-                      }, {
-                        "type" : "Quantity",
-                        "value" : 1,
-                        "unit" : "year"
-                      } ]
-                    },
-                    "high" : {
-                      "type" : "Add",
-                      "operand" : [ {
-                        "type" : "Now"
-                      }, {
-                        "type" : "Quantity",
-                        "value" : 1,
-                        "unit" : "year"
-                      } ]
-                    },
-                    "lowClosed" : true,
-                    "highClosed" : true
-                  } ]
-                }, {
-                  "type" : "Not",
-                  "operand" : {
-                    "type" : "IsNull",
-                    "operand" : {
-                      "type" : "Now"
+        {
+          "name": "InDemographic",
+          "context": "Patient",
+          "accessLevel": "Public",
+          "expression": {
+            "type": "And",
+            "operand": [
+              {
+                "type": "GreaterOrEqual",
+                "operand": [
+                  {
+                    "precision": "Year",
+                    "type": "CalculateAge",
+                    "operand": {
+                      "path": "birthDate.value",
+                      "type": "Property",
+                      "source": {
+                        "name": "Patient",
+                        "type": "ExpressionRef"
+                      }
                     }
+                  },
+                  {
+                    "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                    "value": "18",
+                    "type": "Literal"
                   }
-                } ]
-              } ]
-            }
-          }
-        },
-        "name" : "HasRecentVisualFootExam",
-        "context" : "Patient",
-        "accessLevel" : "Public"
-      }, {
-        "type" : "ExpressionDef",
-        "expression" : {
-          "type" : "Exists",
-          "operand" : {
-            "type" : "Query",
-            "source" : [ {
-              "type" : "AliasedQuerySource",
-              "expression" : {
-                "type" : "Retrieve",
-                "dataType" : "{http://hl7.org/fhir}DocumentReference",
-                "templateId" : "http://hl7.org/fhir/StructureDefinition/DocumentReference"
+                ]
               },
-              "alias" : "D"
-            } ],
-            "relationship" : [ ],
-            "where" : {
-              "type" : "Equal",
-              "operand" : [ {
-                "type" : "FunctionRef",
-                "operand" : [ {
-                  "type" : "Property",
-                  "source" : {
-                    "type" : "Property",
-                    "source" : {
-                      "type" : "Indexer",
-                      "operand" : [ {
-                        "type" : "Property",
-                        "path" : "content",
-                        "scope" : "D"
-                      }, {
-                        "type" : "Literal",
-                        "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
-                        "value" : "0"
-                      } ]
-                    },
-                    "path" : "attachment"
-                  },
-                  "path" : "data"
-                } ],
-                "name" : "ToString",
-                "libraryName" : "FHIRHelpers"
-              }, {
-                "type" : "Literal",
-                "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                "value" : "Visual foot exam showed active infection?"
-              } ]
-            }
-          }
-        },
-        "name" : "HasVisibleSignsOfInfection",
-        "context" : "Patient",
-        "accessLevel" : "Public"
-      }, {
-        "type" : "ExpressionDef",
-        "expression" : {
-          "type" : "Exists",
-          "operand" : {
-            "type" : "Query",
-            "source" : [ {
-              "type" : "AliasedQuerySource",
-              "expression" : {
-                "type" : "Retrieve",
-                "codes" : {
-                  "type" : "Property",
-                  "source" : {
-                    "type" : "ConceptRef",
-                    "name" : "Monofilament foot sensation test (procedure)"
-                  },
-                  "path" : "codes"
-                },
-                "dataType" : "{http://hl7.org/fhir}Procedure",
-                "templateId" : "http://hl7.org/fhir/StructureDefinition/Procedure",
-                "codeProperty" : "code",
-                "codeComparator" : "~"
-              },
-              "alias" : "P"
-            } ],
-            "relationship" : [ ],
-            "where" : {
-              "type" : "And",
-              "operand" : [ {
-                "type" : "Equal",
-                "operand" : [ {
-                  "type" : "Property",
-                  "source" : {
-                    "type" : "Property",
-                    "path" : "status",
-                    "scope" : "P"
-                  },
-                  "path" : "value"
-                }, {
-                  "type" : "Literal",
-                  "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                  "value" : "completed"
-                } ]
-              }, {
-                "type" : "And",
-                "operand" : [ {
-                  "type" : "In",
-                  "operand" : [ {
-                    "type" : "Property",
-                    "source" : {
-                      "type" : "As",
-                      "asTypeSpecifier" : {
-                        "type" : "NamedTypeSpecifier",
-                        "name" : "{http://hl7.org/fhir}dateTime"
-                      },
-                      "operand" : {
-                        "type" : "Property",
-                        "path" : "performed",
-                        "scope" : "P"
-                      },
-                      "strict" : false
-                    },
-                    "path" : "value"
-                  }, {
-                    "type" : "Interval",
-                    "low" : {
-                      "type" : "Subtract",
-                      "operand" : [ {
-                        "type" : "Now"
-                      }, {
-                        "type" : "Quantity",
-                        "value" : 1,
-                        "unit" : "year"
-                      } ]
-                    },
-                    "high" : {
-                      "type" : "Add",
-                      "operand" : [ {
-                        "type" : "Now"
-                      }, {
-                        "type" : "Quantity",
-                        "value" : 1,
-                        "unit" : "year"
-                      } ]
-                    },
-                    "lowClosed" : true,
-                    "highClosed" : true
-                  } ]
-                }, {
-                  "type" : "Not",
-                  "operand" : {
-                    "type" : "IsNull",
-                    "operand" : {
-                      "type" : "Now"
+              {
+                "type": "LessOrEqual",
+                "operand": [
+                  {
+                    "precision": "Year",
+                    "type": "CalculateAge",
+                    "operand": {
+                      "path": "birthDate.value",
+                      "type": "Property",
+                      "source": {
+                        "name": "Patient",
+                        "type": "ExpressionRef"
+                      }
                     }
-                  }
-                } ]
-              } ]
-            }
-          }
-        },
-        "name" : "HasRecentSensoryFootExam",
-        "context" : "Patient",
-        "accessLevel" : "Public"
-      }, {
-        "type" : "ExpressionDef",
-        "expression" : {
-          "type" : "Exists",
-          "operand" : {
-            "type" : "Query",
-            "source" : [ {
-              "type" : "AliasedQuerySource",
-              "expression" : {
-                "type" : "Retrieve",
-                "codes" : {
-                  "type" : "Property",
-                  "source" : {
-                    "type" : "ConceptRef",
-                    "name" : "Pedal pulse taking (procedure)"
                   },
-                  "path" : "codes"
-                },
-                "dataType" : "{http://hl7.org/fhir}Procedure",
-                "templateId" : "http://hl7.org/fhir/StructureDefinition/Procedure",
-                "codeProperty" : "code",
-                "codeComparator" : "~"
-              },
-              "alias" : "P"
-            } ],
-            "relationship" : [ ],
-            "where" : {
-              "type" : "And",
-              "operand" : [ {
-                "type" : "Equal",
-                "operand" : [ {
-                  "type" : "Property",
-                  "source" : {
-                    "type" : "Property",
-                    "path" : "status",
-                    "scope" : "P"
-                  },
-                  "path" : "value"
-                }, {
-                  "type" : "Literal",
-                  "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                  "value" : "completed"
-                } ]
-              }, {
-                "type" : "And",
-                "operand" : [ {
-                  "type" : "In",
-                  "operand" : [ {
-                    "type" : "Property",
-                    "source" : {
-                      "type" : "As",
-                      "asTypeSpecifier" : {
-                        "type" : "NamedTypeSpecifier",
-                        "name" : "{http://hl7.org/fhir}dateTime"
-                      },
-                      "operand" : {
-                        "type" : "Property",
-                        "path" : "performed",
-                        "scope" : "P"
-                      },
-                      "strict" : false
-                    },
-                    "path" : "value"
-                  }, {
-                    "type" : "Interval",
-                    "low" : {
-                      "type" : "Subtract",
-                      "operand" : [ {
-                        "type" : "Now"
-                      }, {
-                        "type" : "Quantity",
-                        "value" : 1,
-                        "unit" : "year"
-                      } ]
-                    },
-                    "high" : {
-                      "type" : "Add",
-                      "operand" : [ {
-                        "type" : "Now"
-                      }, {
-                        "type" : "Quantity",
-                        "value" : 1,
-                        "unit" : "year"
-                      } ]
-                    },
-                    "lowClosed" : true,
-                    "highClosed" : true
-                  } ]
-                }, {
-                  "type" : "Not",
-                  "operand" : {
-                    "type" : "IsNull",
-                    "operand" : {
-                      "type" : "Now"
-                    }
+                  {
+                    "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                    "value": "75",
+                    "type": "Literal"
                   }
-                } ]
-              } ]
-            }
-          }
-        },
-        "name" : "HasRecentPedalPulseFootExam",
-        "context" : "Patient",
-        "accessLevel" : "Public"
-      }, {
-        "type" : "ExpressionDef",
-        "expression" : {
-          "type" : "And",
-          "operand" : [ {
-            "type" : "ExpressionRef",
-            "name" : "MeetsInclusionCriteria"
-          }, {
-            "type" : "Or",
-            "operand" : [ {
-              "type" : "Or",
-              "operand" : [ {
-                "type" : "Not",
-                "operand" : {
-                  "type" : "IsTrue",
-                  "operand" : {
-                    "type" : "ExpressionRef",
-                    "name" : "HasRecentVisualFootExam"
-                  }
-                }
-              }, {
-                "type" : "Not",
-                "operand" : {
-                  "type" : "IsTrue",
-                  "operand" : {
-                    "type" : "ExpressionRef",
-                    "name" : "HasRecentSensoryFootExam"
-                  }
-                }
-              } ]
-            }, {
-              "type" : "Not",
-              "operand" : {
-                "type" : "IsTrue",
-                "operand" : {
-                  "type" : "ExpressionRef",
-                  "name" : "HasRecentPedalPulseFootExam"
-                }
+                ]
               }
-            } ]
-          } ]
+            ]
+          }
         },
-        "name" : "NeedsFootExam",
-        "context" : "Patient",
-        "accessLevel" : "Public"
-      } ]
-    },
-    "annotation" : [ {
-      "type" : "CqlToElmInfo",
-      "translatorVersion" : "2.8.0",
-      "translatorOptions" : ""
-    } ]
+        {
+          "name": "HasDiabetes",
+          "context": "Patient",
+          "accessLevel": "Public",
+          "expression": {
+            "type": "Exists",
+            "operand": {
+              "type": "Query",
+              "source": [
+                {
+                  "alias": "C",
+                  "expression": {
+                    "dataType": "{http://hl7.org/fhir}Condition",
+                    "templateId": "http://hl7.org/fhir/StructureDefinition/Condition",
+                    "codeProperty": "code",
+                    "codeComparator": "in",
+                    "type": "Retrieve",
+                    "codes": {
+                      "name": "Diabetes",
+                      "preserve": true,
+                      "type": "ValueSetRef"
+                    }
+                  }
+                }
+              ],
+              "relationship": [],
+              "where": {
+                "type": "Equivalent",
+                "operand": [
+                  {
+                    "name": "ToConcept",
+                    "libraryName": "FHIRHelpers",
+                    "type": "FunctionRef",
+                    "operand": [
+                      {
+                        "path": "verificationStatus",
+                        "scope": "C",
+                        "type": "Property"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Confirmed",
+                    "type": "ConceptRef"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "name": "HasDocumentedSignsOfInfection",
+          "context": "Patient",
+          "accessLevel": "Public",
+          "expression": {
+            "type": "Exists",
+            "operand": {
+              "type": "Query",
+              "source": [
+                {
+                  "alias": "D",
+                  "expression": {
+                    "dataType": "{http://hl7.org/fhir}DocumentReference",
+                    "templateId": "http://hl7.org/fhir/StructureDefinition/DocumentReference",
+                    "type": "Retrieve"
+                  }
+                }
+              ],
+              "relationship": [],
+              "where": {
+                "type": "Equal",
+                "operand": [
+                  {
+                    "name": "ToString",
+                    "libraryName": "FHIRHelpers",
+                    "type": "FunctionRef",
+                    "operand": [
+                      {
+                        "path": "data",
+                        "type": "Property",
+                        "source": {
+                          "path": "attachment",
+                          "type": "Property",
+                          "source": {
+                            "type": "Indexer",
+                            "operand": [
+                              {
+                                "path": "content",
+                                "scope": "D",
+                                "type": "Property"
+                              },
+                              {
+                                "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                "value": "0",
+                                "type": "Literal"
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "valueType": "{urn:hl7-org:elm-types:r1}String",
+                    "value": "Visual foot exam showed active infection?",
+                    "type": "Literal"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "name": "IsDiabeticWithInfection",
+          "context": "Patient",
+          "accessLevel": "Public",
+          "expression": {
+            "type": "And",
+            "operand": [
+              {
+                "type": "And",
+                "operand": [
+                  {
+                    "name": "InDemographic",
+                    "type": "ExpressionRef"
+                  },
+                  {
+                    "name": "HasDiabetes",
+                    "type": "ExpressionRef"
+                  }
+                ]
+              },
+              {
+                "name": "HasDocumentedSignsOfInfection",
+                "type": "ExpressionRef"
+              }
+            ]
+          }
+        }
+      ]
+    }
   }
 },
 "fhirBaseUrl": "https://cloud.alphora.com/sandbox/r4/cqm/fhir"

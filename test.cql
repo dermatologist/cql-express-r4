@@ -1,7 +1,6 @@
 // NOTE:  This is a simplified example, designed only for the purpose of demonstrating how to
 // use the cql-execution, cql-exec-fhir, and cql-exec-vsac javascript modules.  This CQL
 // is NOT clinically validated and should NOT be used in a clinical setting.
-// https://www.antvaset.com/cql-to-elm-converter
 
 library DiabeticFootExam version '1.0.0'
 using FHIR version '4.0.1'
@@ -12,13 +11,7 @@ codesystem "SNOMEDCT": 'http://snomed.info/sct'
 codesystem "CONDITION-VER-STATUS": 'http://terminology.hl7.org/CodeSystem/condition-ver-status'
 valueset "Diabetes": '1'
 code "Confirmed code": 'confirmed' from "CONDITION-VER-STATUS" display 'Confirmed'
-code "Diabetic foot examination (regime/therapy) code": '401191002' from "SNOMEDCT" display 'Diabetic foot examination (regime/therapy)'
-code "Monofilament foot sensation test (procedure) code": '134388005' from "SNOMEDCT" display 'Monofilament foot sensation test (procedure)'
-code "Pedal pulse taking (procedure) code": '91161007' from "SNOMEDCT" display 'Pedal pulse taking (procedure)'
 concept "Confirmed": { "Confirmed code" } display 'Confirmed'
-concept "Diabetic foot examination (regime/therapy)": { "Diabetic foot examination (regime/therapy) code" } display 'Diabetic foot examination (regime/therapy)'
-concept "Monofilament foot sensation test (procedure)": { "Monofilament foot sensation test (procedure) code" } display 'Monofilament foot sensation test (procedure)'
-concept "Pedal pulse taking (procedure)": { "Pedal pulse taking (procedure) code" } display 'Pedal pulse taking (procedure)'
 
 context Patient
 
@@ -31,44 +24,15 @@ define HasDiabetes:
       where C.verificationStatus ~ "Confirmed"
   )
 
-define MeetsInclusionCriteria:
-  InDemographic
-  and HasDiabetes
-
-// NOTE: Skipping definition of exclusion criteria
-
-define HasRecentVisualFootExam:
+define HasDocumentedSignsOfInfection:
   exists(
-    [Procedure: "Diabetic foot examination (regime/therapy)"] P
-      where P.status.value = 'completed'
-      and (P.performed as FHIR.dateTime).value within 1 year of Now()
-  )
-
-define HasVisibleSignsOfInfection:
-   exists(
     [DocumentReference] D
       // Adjusted: compare to a string or code, not a concept
       where D.content[0].attachment.data = 'Visual foot exam showed active infection?'
-   )
-
-define HasRecentSensoryFootExam:
-  exists(
-    [Procedure: "Monofilament foot sensation test (procedure)"] P
-      where P.status.value = 'completed'
-      and (P.performed as FHIR.dateTime).value within 1 year of Now()
   )
 
-define HasRecentPedalPulseFootExam:
-  exists(
-    [Procedure: "Pedal pulse taking (procedure)"] P
-      where P.status.value = 'completed'
-      and (P.performed as FHIR.dateTime).value within 1 year of Now()
-  )
+define IsDiabeticWithInfection:
+  InDemographic and
+  HasDiabetes and
+  HasDocumentedSignsOfInfection
 
-define NeedsFootExam:
-  MeetsInclusionCriteria
-  and (
-    HasRecentVisualFootExam is not true
-    or HasRecentSensoryFootExam is not true
-    or HasRecentPedalPulseFootExam is not true
-  )
