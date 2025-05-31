@@ -48,8 +48,6 @@ app.post("/", jsonParser, async (req: Request, res: Response)  => {
 
     const llmService = await new LlmService(
       await bootstrap(),
-      "",
-      "",
     );
     // Create the patient source
     let patientSource = cqlfhir.PatientSource.FHIRv401();
