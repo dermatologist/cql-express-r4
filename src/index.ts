@@ -1,5 +1,6 @@
 // src/index.ts
 import express, { Express, Request, Response } from "express";
+import http from "http";
 import dotenv from "dotenv";
 import cql from "cql-execution";
 import cqlfhir from "cql-exec-fhir";
@@ -47,8 +48,6 @@ app.post("/", jsonParser, async (req: Request, res: Response)  => {
 
     const llmService = await new LlmService(
       await bootstrap(),
-      "",
-      "",
     );
     // Create the patient source
     let patientSource = cqlfhir.PatientSource.FHIRv401();
@@ -80,6 +79,12 @@ app.post("/", jsonParser, async (req: Request, res: Response)  => {
 });
 /* Start the Express app and listen
  for incoming requests on the specified port */
-app.listen(port, () => {
+// app.listen(port, () => {
+//   console.log(`[server]: Server is running at http://localhost:${port}`);
+// });
+const server = http.createServer(app);
+// Set the timeout to 5 minutes (300000 milliseconds)
+server.timeout = 300000;
+server.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);
 });

@@ -1,83 +1,49 @@
-import { BaseChain } from "medpromptjs";
+import { LLMLoop } from "medpromptjs";
 
 
-class LlmService extends BaseChain {
-  string_expression: string = "";
 
-  async checkAssertion(expression, context): Promise<boolean> {
-    const _expression = JSON.parse(expression);
-    const _context = JSON.parse(context);
-    let _content = ""
-    // console.log("\nChecking assertion with expression: ", this.printValues(_expression));
-    _context.forEach(element => {
-          _content += atob(element.content[0].attachment.data.value);
-    });
-    // console.log("\n and context: ", _content);
-    const _input = {
-      "content": this.findDatesAndConvertToTimeElapsed(_content.replace(/(\r\n|\n|\r)/gm," ")),
-      "expression": this.printValues(_expression)
-    }
-    console.log("\n", _input);
-    const response = await this.chain(_input);
-    console.log("\nResponse: ", response);
-    if(response.toLocaleLowerCase().includes("true")) {
-      return true;
-    }else {
-      return false;
-    }
-  }
-
-  printValues(obj) {
-    for (var key in obj) {
-        if (typeof obj[key] === "object") {
-            this.printValues(obj[key]);
-        } else {
-
-              this.string_expression += obj[key] + " ";
-
-        }
-    }
-    const _eliminate = ["true", "false", "null", "undefined", "String",
-      "Number", "Object", "Array", "Boolean", "value", "Type", "Specifier", "Named"]
-    _eliminate.forEach(element => {
-      this.string_expression = this.string_expression.replace(element, '');
-    });
-    this.string_expression = this.string_expression.replace(/(?:https?|ftp):\/\/[\n\S]+/g, '')
-    return this.camelToString(this.string_expression);
-  }
+export default class LlmService extends LLMLoop {
+  _mapQueryTemplate: string = `
+    You are an assistant that can convert statements to a natural language query as in the example below.\n
 
 
-  findDatesAndConvertToTimeElapsed(text){
-    // Regular expression to match dates in format of 'mm/dd/yyyy' or 'mm-dd-yyyy'
-    const dateRegex = /(\d{1,2}[-/]\d{1,2}[-/]\d{4})/g;
-    let matches;
-    let currentDate = new Date();
+    Statements: Visual foot exam in the last month. Visual foot exam showed active infection.
+    query: Did the patient have a visual foot exam in the last month? Is there any evidence of active infection?
+    Statements: {expression}
+    query: `;
 
-    while (( matches = dateRegex.exec(text) ) !== null) {
-      let date = new Date(matches[0]);
-      let timeElapsed = (currentDate.getTime() - date.getTime()) / (1000 * 60 * 60 * 24);
-      text = text.replace(matches[0], Math.floor(timeElapsed));
-      text += " days ago.";
-    }
-
-    console.log(text);
-    return text;
-  }
-
-  camelToString(camelCase) {
-    return camelCase.replace(/([A-Z])/g, ' $1')
-        .replace(/^./, function(str){ return str.toUpperCase(); });
-  }
-
-  async checkMention(expression, context): Promise<boolean> {
-    return true;
-  }
-
-  async checkNegation(expression, context): Promise<boolean> {
-    return true;
-  }
+  _mapDocTemplate: string = `
+    You will be given a document and few statements.\n
+    Extract facts from the document that are relevant to the statements.\n
+    Do not include any irrelevant information or context.\n
 
 
+    Example:\n
+    document: The patient is a 45-year-old male with a history of hypertension. He presented with chest pain and was diagnosed with myocardial infarction. He was treated with aspirin and beta-blockers.\n
+    statements: diagnosis of myocardial infarction. currently on beta-blockers.\n
+    facts: The patient was diagnosed with myocardial infarction and is currently on beta-blockers.\n
+    document: {document} \n
+    statements: {statements}\n
+    facts: `;
+
+  _reduceChainTemplate: string = `
+    Say yes if the facts mentions all aspects of the query, else say no.\n
+
+    Example:
+    facts: Patient had a laproscopy 27 days back. The findings were normal. \n
+    query: Did the patient have a laproscopy this month?\n
+    answer: YES. The patient had a laproscopy 27 days back.\n
+    facts: The patient is a diabetic and hypertensive. He is on metformin and amlodipine. \n
+    query: Is the patient on heparin and metformin?\n
+    answer: NO. The patient is on heparin but not on metformin.\n
+    facts: A visual foot examination was performed 26 days ago to assess skin integrity, circulation, and structural abnormalities. The exam revealed normal skin condition, nail health, circulation, and absence of edema and deformities. However, there were signs of an active infection with erythema and swelling. \n
+    query: Did the patient have a visual foot exam in the last month? Is there any evidence of active infection?\n
+    answer: YES. The patient had a visual foot exam in the last month and there is evidence of active infection.\n
+    facts: A visual foot examination was performed 126 days ago to assess skin integrity, circulation, and structural abnormalities. The exam revealed normal skin condition, nail health, circulation, and absence of edema and deformities. However, there were signs of an active infection with erythema and swelling. \n
+    query: Did the patient have a visual foot exam in the last month? Is there any evidence of active infection?\n
+    answer: NO. The patient did not have a visual foot exam in the last month but there is evidence of active infection.\n
+    facts: {facts} \n
+    query: {query}\n
+    answer: `;
 }
 
-export default LlmService;
