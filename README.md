@@ -10,6 +10,9 @@ This is an simple express server example of how to use the LLM hook to execute C
 ## Related projects
 * [cql-execution](https://github.com/dermatologist/cql-execution)
 * [cql-exec-vsac](https://github.com/dermatologist/cql-exec-vsac)
+* [medpromptjs](https://github.com/dermatologist/medpromptjs)
+* [cql2elm](https://github.com/dermatologist/cql2elm)
+
 
 ## Prerequisites
 
@@ -47,7 +50,7 @@ npm run dev
 
 This will start the server at `http://localhost:3000` by default. You can change the port in the `src/index.ts` file or create an `.env` file to manage the environt-specific variables separately.
 
-For production, you can build the TypeScript files and then start the server. Run the following commands:
+To build the TypeScript files and then start the server. Run the following commands:
 
 ```
 npm run build
@@ -55,9 +58,7 @@ npm start
 ```
 
 ## Usage
-Post to `http://localhost:3000` with fhirBundles, cqlJson and fhirBaseUrl (for terminology) as params.
-
-🚀 [See example](/test.http)
+Post to `http://localhost:3000` with fhirBundles, cqlJson and fhirBaseUrl (for terminology) as params.  🚀 [See example](/test.http)
 
 ## Give us a star ⭐️
 If you find this project useful, give us a star. It helps others discover the project.
