@@ -1,7 +1,5 @@
 import { LLMLoop } from "medpromptjs";
 
-
-
 export default class LlmService extends LLMLoop {
   _mapQueryTemplate: string = `
     You are an assistant that can convert statements to a natural language query as in the example below.\n
@@ -46,4 +44,3 @@ export default class LlmService extends LLMLoop {
     query: {query}\n
     answer: `;
 }
-
