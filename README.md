@@ -58,7 +58,7 @@ npm start
 ```
 
 ## Usage
-Post to `http://localhost:3000` with fhirBundles, cqlJson and fhirBaseUrl (for terminology) as params.  🚀 [See example](/test.http)
+Access a form at `http://localhost:3000` to post fhirBundles, cqlJson and fhirBaseUrl (for terminology). You can also post a json payload directly. 🚀 [See example](/test.http)
 
 ## Give us a star ⭐️
 If you find this project useful, give us a star. It helps others discover the project.
