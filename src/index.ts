@@ -31,16 +31,49 @@ var jsonParser = bodyParser.json();
 /* Define a route for the root path ("/")
  using the HTTP GET method */
 app.get("/", (req: Request, res: Response) => {
-  res.send(
-    "CQL Execution Service is running! Post to this URL with fhirBundles, cqlJson and fhirBaseUrl (for terminology) as params."
-  );
+  // res.send(
+  //   "CQL Execution Service is running! Post to this URL with fhirBundles, cqlJson and fhirBaseUrl (for terminology) as params."
+  // );
+  // send an html page with a form to submit fhirBundles, cqlJson and fhirBaseUrl
+  res.send(`
+    <html>
+      <head>
+        <title>CQL Execution Service</title>
+      </head>
+      <body>
+        <h1>CQL Execution Service</h1>
+        <form action="/" method="post">
+          <label for="fhirBundles">FHIR Bundles:</label><br>
+          <textarea id="fhirBundles" name="fhirBundles" rows="4" cols="50"></textarea><br>
+          <label for="cqlJson">CQL JSON:</label><br>
+          <textarea id="cqlJson" name="cqlJson" rows="4" cols="50"></textarea><br>
+          <label for="fhirBaseUrl">FHIR Base URL:</label><br>
+          <input type="text" id="fhirBaseUrl" name="fhirBaseUrl"><br><br>
+          <input type="submit" value="Submit">
+        </form>
+      </body>
+    </html>
+  `);
 });
+
+// handle form submission
+
+app.use(express.urlencoded({ extended: true }));
 
 app.post("/", jsonParser, async (req: Request, res: Response) => {
   const umlsKey = process.env.UMLS_API_KEY || "";
-  const fhirBundles = req.body.fhirBundles;
-  const cqlJson = req.body.cqlJson;
-  const fhirBaseUrl = req.body.fhirBaseUrl || "";
+  let fhirBundles = req.body.fhirBundles;
+  let cqlJson = req.body.cqlJson;
+  let fhirBaseUrl = req.body.fhirBaseUrl || "";
+  // if fhirBundles is a string, parse it as JSON
+  try {
+    fhirBundles = JSON.parse(fhirBundles);
+    cqlJson = JSON.parse(cqlJson);
+    fhirBaseUrl = JSON.parse(fhirBaseUrl);
+  } catch (error) {
+    // return res.status(400).send("Invalid FHIR Bundles JSON format.");
+  }
+
   const elmFile = cqlJson;
   const libraries = {
     FHIRHelpers: JSON.parse(fs.readFileSync("src/FHIRHelpers.json", "utf8")),
