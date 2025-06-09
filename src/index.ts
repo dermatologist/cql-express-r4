@@ -28,6 +28,10 @@ const port = process.env.PORT || 3000;
 // create application/json parser
 var jsonParser = bodyParser.json();
 
+var htmlContent = fs.readFileSync(
+  path.join(__dirname, "content.html"),
+  "utf8"
+) || "LLM Execution Service is running! Post to this URL with fhirBundles, cqlJson and fhirBaseUrl (for terminology) as params.";
 /* Define a route for the root path ("/")
  using the HTTP GET method */
 app.get("/", (req: Request, res: Response) => {
@@ -35,25 +39,7 @@ app.get("/", (req: Request, res: Response) => {
   //   "CQL Execution Service is running! Post to this URL with fhirBundles, cqlJson and fhirBaseUrl (for terminology) as params."
   // );
   // send an html page with a form to submit fhirBundles, cqlJson and fhirBaseUrl
-  res.send(`
-    <html>
-      <head>
-        <title>CQL Execution Service</title>
-      </head>
-      <body>
-        <h1>CQL Execution Service</h1>
-        <form action="/" method="post">
-          <label for="fhirBundles">FHIR Bundles:</label><br>
-          <textarea id="fhirBundles" name="fhirBundles" rows="4" cols="50"></textarea><br>
-          <label for="cqlJson">CQL JSON:</label><br>
-          <textarea id="cqlJson" name="cqlJson" rows="4" cols="50"></textarea><br>
-          <label for="fhirBaseUrl">FHIR Base URL:</label><br>
-          <input type="text" id="fhirBaseUrl" name="fhirBaseUrl"><br><br>
-          <input type="submit" value="Submit">
-        </form>
-      </body>
-    </html>
-  `);
+  res.send(htmlContent);
 });
 
 // handle form submission
@@ -71,7 +57,8 @@ app.post("/", jsonParser, async (req: Request, res: Response) => {
     cqlJson = JSON.parse(cqlJson);
     fhirBaseUrl = JSON.parse(fhirBaseUrl);
   } catch (error) {
-    // return res.status(400).send("Invalid FHIR Bundles JSON format.");
+    // json parsing not required, continue with the string
+    console.log("No JSON parsing required, using strings directly.");
   }
 
   const elmFile = cqlJson;
