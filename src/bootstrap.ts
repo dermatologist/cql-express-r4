@@ -6,6 +6,8 @@ import { z } from "zod";
 import { DynamicTool, DynamicStructuredTool } from "@langchain/core/tools";
 
 const bootstrap = async () => {
+  // Define any llm here
+
   const ollama = new Ollama({
     baseUrl: "http://localhost:11434",
     model: "phi3:mini",
@@ -17,24 +19,7 @@ const bootstrap = async () => {
     apiKey: process.env.GOOGLE_API_KEY,
   });
 
-  const tools = [
-    new DynamicTool({
-      name: "FOO",
-      description:
-        "call this to get the value of foo. input should be an empty string.",
-      func: async () => "baz",
-    }),
-    new DynamicStructuredTool({
-      name: "random-number-generator",
-      description: "generates a random number between two input numbers",
-      schema: z.object({
-        low: z.number().describe("The lower bound of the generated number"),
-        high: z.number().describe("The upper bound of the generated number"),
-      }),
-      func: async ({ low, high }) =>
-        (Math.random() * (high - low) + low).toString(), // Outputs still must be strings
-    }),
-  ];
+  const tools = [];
 
   container.register("main-llm", {
     useValue: google,
@@ -51,6 +36,9 @@ const bootstrap = async () => {
   container.register("baseChain_prompt", {
     useValue: "",
   });
+
+  // The LitL pipeline is in medpromptjs package https://github.com/dermatologist/medpromptjs/blob/develop/src/llm_loop.ts
+  // The default prompts can be altered here by registering a value for 'litl_mapquery_template', 'litl_mapdoc_template' and 'litl_reduce_chain_template'.
 
   return container;
 };
