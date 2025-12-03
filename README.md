@@ -60,7 +60,7 @@ npm start
 ## Usage
 Access a form at `http://localhost:3000` to post fhirBundles, cqlJson and fhirBaseUrl (for terminology). You can also post a json payload directly. 🚀 [See example](/test.http)
 
-## outut
+## Output
 
 <p align="center">
   <img src="https://github.com/dermatologist/cql-express-r4/blob/develop/notes/output.jpg" />
