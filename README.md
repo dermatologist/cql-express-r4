@@ -5,7 +5,7 @@ CQL is a domain-specific language that allows clinicians and researchers to expr
 
 One limitation of FHIRPath-based CQL execution is that it cannot handle assertions in the FHIR DocumentReference resource. I have [forked the nodejs CQL execution engine](https://github.com/dermatologist/cql-execution) to add a hook that can call an LLM when it encounters a DocumentReference with unstructured text. The LLM can then execute the CQL with assertions and return the result to the CQL execution engine.
 
-This is a prototype of how to use the LLM hook to execute CQL that contains assertions in the DocumentReference resource as unstructured text. See related projects for more details. **The default implementation is in the `medpromptjs` package [here](https://github.com/dermatologist/medpromptjs/blob/develop/src/llm_loop.ts) which is imported and used. You may override LLM and prompts in the `src/bootstrap.ts` file.**
+This is a prototype of *LitL* pattern to execute CQL that references unstructured text. **The default implementation is in the `medpromptjs` package [here](https://github.com/dermatologist/medpromptjs/blob/develop/src/llm_loop.ts) which is imported and used here. You may override LLM and prompts in the `src/bootstrap.ts` file.**
 
 ## Related projects
 * [cql-execution](https://github.com/dermatologist/cql-execution)
