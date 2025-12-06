@@ -1,18 +1,20 @@
 # 🔧 [LLM-in-the Loop CQL execution](https://nuchange.ca/2025/06/v-llm-in-the-loop-cql-execution-with-unstructured-data-and-fhir-terminology-support.html)
 
 ## About
-CQL is a domain-specific language that allows clinicians and researchers to express queries and retrieve data from electronic health records (EHRs) in a standardized and interoperable way. CQL supports the use of terminology services, which are external services that provide mappings and translations between different code systems and value sets.
+CQL is a domain-specific language that enables clinicians and researchers to express queries and retrieve data from electronic health records (EHRs) in a standardized, interoperable manner. CQL supports the use of terminology services, which are external services that provide mappings and translations between different code systems and value sets.
 
 One limitation of FHIRPath-based CQL execution is that it cannot handle assertions in the FHIR DocumentReference resource. I have [forked the nodejs CQL execution engine](https://github.com/dermatologist/cql-execution) to add a hook that can call an LLM when it encounters a DocumentReference with unstructured text. The LLM can then execute the CQL with assertions and return the result to the CQL execution engine.
 
-This is a prototype of *LitL* pattern to execute CQL that references unstructured text. **The default implementation is in the `medpromptjs` package [here](https://github.com/dermatologist/medpromptjs/blob/develop/src/llm_loop.ts) which is imported and used here. You may override LLM and prompts in the `src/bootstrap.ts` file.**
+This is a prototype of the end-to-end *LitL* pipeline and dataflow to execute CQL that references unstructured text. **The default implementation is in the [medpromptjs package](https://github.com/dermatologist/medpromptjs/blob/develop/src/llm_loop.ts), which is imported and used in this application. You may override LLM and prompts in the `src/bootstrap.ts` file.**
+
+[Read instructions](https://nuchange.ca/2025/06/v-llm-in-the-loop-cql-execution-with-unstructured-data-and-fhir-terminology-support.html)
 
 ## Related projects
 * [cql-execution](https://github.com/dermatologist/cql-execution)
 * [cql-exec-vsac](https://github.com/dermatologist/cql-exec-vsac)
 * [medpromptjs](https://github.com/dermatologist/medpromptjs)
 * [cql2elm](https://github.com/dermatologist/cql2elm)
-
+* [DHTI: A reference architecture for Gen AI in healthcare.](https://github.com/dermatologist/dhti)
 
 ## Prerequisites
 
@@ -35,7 +37,7 @@ Navigate to the project directory:
 cd cql-express-r4/
 ```
 
-Install the project dependencies including TypeScript and Nodemon:
+Install the project dependencies, including TypeScript and Nodemon:
 
 ```
 npm i
